@@ -1,0 +1,43 @@
+<!-- Mobile: Dropdown -->
+<div class="block md:hidden mb-4">
+  <select
+    class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-[#005480]"
+    [value]="activeTab"
+    (change)="onSelectChange($event)"
+  >
+    <option *ngFor="let tab of tabs" [value]="tab.id">
+      {{ tab.label }}
+    </option>
+  </select>
+</div>
+
+<!-- Desktop: Sliding Tab Bar -->
+<div class="hidden md:block relative w-full overflow-x-auto">
+  <div
+    #tabContainer
+    class="flex justify-start md:justify-center gap-4 border-b border-gray-200 whitespace-nowrap relative"
+  >
+    <ng-container *ngFor="let tab of tabs">
+      <button
+        [attr.data-id]="tab.id"
+        class="py-2 px-3 sm:px-4 font-semibold relative z-10 transition-colors duration-300"
+        [ngClass]="{
+          'text-[#005480]': activeTab === tab.id,
+          'text-gray-600 hover:text-[#005480]': activeTab !== tab.id
+        }"
+        (click)="onTabClick(tab.id, $event)"
+      >
+        {{ tab.label }}
+      </button>
+    </ng-container>
+
+    <!-- Animated Underline -->
+    <div
+      class="absolute bottom-0 h-1 bg-[#005480] transition-all duration-300 ease-in-out"
+      [ngStyle]="{
+        left: underlineLeft + 'px',
+        width: underlineWidth + 'px'
+      }"
+    ></div>
+  </div>
+</div>

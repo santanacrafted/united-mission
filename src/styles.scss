@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'Winky Rough';
+    src: url('/assets/fonts/winky-rough/WinkyRough-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Winky Rough';
+    src: url('/assets/fonts/winky-rough/WinkyRough-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Winky Rough';
+    src: url('/assets/fonts/winky-rough/WinkyRough-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+
+html, body {   
+  width: 100%;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+body { margin: 0; font-family: 'Winky Rough', Roboto, "Helvetica Neue", sans-serif;  }
+
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  // border-radius: 0 !important;
+  background-color: transparent;
+}
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.snack-bar-overrides((
+    container-color: white,
+    supporting-text-color: black,
+    button-color: #005480
+  ));
+}
+

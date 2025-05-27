@@ -1,0 +1,16 @@
+<app-popup-templates></app-popup-templates>
+<div class="flex flex-col min-h-screen">
+    <app-header [layout]="'horizontal'" [drawerBtnPosition]="'left'" [drawerSide]="'left'" [siteTitle]="''"
+        [logoUrl]="logoUrl" [logoPosition]="'left'" [logoHeight]="80" [logoStyles]="'h-13 absolute'" [centerLogo]="true"
+        [stickyHeader]="true" [borderBottom]="true" [boxShadow]="'strong'" [showCTAButton]="false"
+        [ctaButtonLabel]="'Join Now'" [ctaButtonStyles]="{ backgroundColor: '#10B981', color: '#fff' }"></app-header>
+
+    <main class="flex-grow">
+        <router-outlet></router-outlet>
+    </main>
+
+    <app-footer [backgroundColor]="'#002f42'" [textColor]="'#dbe9f0'" [fontFamily]="'Poppins, sans-serif'"
+        [headingFontSize]="'18px'" [linkFontSize]="'16px'" [linkColor]="'#9ca3af'"
+        [layout]="'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'" [sections]="footerSections"
+        [copyrightText]="'RIGHTS_RESERVED'"></app-footer>
+</div>

@@ -1,0 +1,61 @@
+<app-video-checker></app-video-checker>
+<!-- sermons.component.html -->
+<section class="bg-[#fefcf8] py-8 sm:py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto text-center mb-10">
+    <h2 class="text-4xl font-bold text-[#005480] mb-2">{{'SERMONS_PAGE_HEADER' | translate}}</h2>
+    <p class="text-lg text-gray-600">{{'SERMONS_PAGE_DESCRIPTION' | translate}}</p>
+  </div>
+
+  <!-- Filters & Search -->
+  <div class="max-w-6xl mx-auto mb-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <!-- Search -->
+    <input
+      type="text"
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005480]"
+      placeholder="{{'SERMONS_PAGE_SEARCH'| translate}}"
+      (input)="onSearch($event)"
+    />
+
+    <!-- Sort Order -->
+    <select
+      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005480]"
+      (change)="onSortChange($event)"
+    >
+      <option value="newest">{{'SERMONS_PAGE_FILTER1' | translate}}</option>
+      <option value="oldest">{{'SERMONS_PAGE_FILTER2' | translate}}</option>
+    </select>
+  </div>
+
+  <!-- Sermons Grid -->
+  <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      *ngFor="let sermon of youtubeVideos$ | async"
+      class="rounded-xl overflow-hidden shadow transition transform hover:scale-[1.02] hover:shadow-xl duration-300 cursor-pointer bg-white"
+      (click)="selectSermon(sermon)"
+    >
+      <img [src]="sermon.thumbnail" alt="Sermon thumbnail" class="w-full h-48 object-cover" />
+      <div class="p-4 text-left">
+        <h3 class="font-bold text-lg text-[#005480] mb-1">{{ sermon.title }}</h3>
+        <p class="text-sm text-gray-600">{{ sermon.speaker }} • {{ sermon.date | date }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Player -->
+  <div *ngIf="selectedSermon" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center px-4">
+    <div (clickOutside)="selectedSermon = null" class="bg-white rounded-xl p-6 w-full max-w-3xl relative">
+      <button class="absolute top-0 right-2 text-gray-500 hover:text-black text-6xl" (click)="selectedSermon = null">
+        &times;
+      </button>
+      <h2 class="text-2xl font-bold text-[#005480] mb-4">{{ selectedSermon.title }}</h2>
+      <app-video-embed [videoUrl]="selectedSermon.videoUrl"></app-video-embed>
+      <p class="text-gray-600 mt-4">{{ selectedSermon.speaker }} • {{ selectedSermon.date | date }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading$ | async" class="dot-loader">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>

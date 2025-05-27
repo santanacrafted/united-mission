@@ -1,0 +1,61 @@
+.viewer-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .viewer-image {
+    max-height: 90vh;
+    max-width: 90vw;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  }
+  
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.2s ease;
+    padding: 0 12px;
+  
+    &.prev {
+      left: 10px;
+    }
+  
+    &.next {
+      right: 10px;
+    }
+  
+    &:hover {
+      color: #ffd700;
+    }
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+  
+    &:hover {
+      color: #005480;
+    }
+  }
+  

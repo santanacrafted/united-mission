@@ -1,0 +1,175 @@
+$meeting-color: #3498db;
+$call-color: #27ae60;
+$birthday-color: #e67e22;
+$deadline-color: #e74c3c;
+$default-color: #95a5a6;
+
+.calendar {
+  padding: 1rem;
+  font-family: sans-serif;
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .month-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      button {
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+
+    .day-name {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .calendar-cell {
+      aspect-ratio: 1;
+      border: 1px solid #ccc;
+      padding: 0.25rem;
+      position: relative;
+      cursor: pointer;
+
+      &.outside {
+        background-color: #f0f0f0;
+        color: #999;
+        pointer-events: none;
+      }
+
+      .day-number {
+        font-size: 0.9rem;
+      }
+
+      .marker-row {
+        display: flex;
+        gap: 2px;
+        position: absolute;
+        bottom: 4px;
+        right: 4px;
+      }
+
+      .event-marker {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+      
+        &.meeting { background-color: #3498db; }
+        &.birthday { background-color: #e67e22; }
+        &.deadline { background-color: #e74c3c; }
+        &.default { background-color: #95a5a6; }
+      }
+    }
+  }
+
+  .day-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .hour-slot {
+      display: flex;
+      align-items: flex-start;
+      padding: 0 0.5rem 0 0.5rem;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+
+      .hour-label {
+        width: 80px;
+        font-weight: bold;
+      }
+
+      .hour-events {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+         .hour-events .event,
+      .hour-events .continued {
+        border-radius: 4px;
+        margin-bottom: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        color: #fff;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+      
+        &.meeting { background-color: $meeting-color; }
+        &.call { background-color: $call-color; }
+        &.birthday { background-color: $birthday-color; }
+        &.deadline { background-color: $deadline-color; }
+        &.default { background-color: $default-color; }
+      }
+
+      .continued {
+        opacity: 0.7;
+        border-top: 1px dashed rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  .popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+
+    .popup-modal {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      width: 300px;
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      button {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+
+.continued {
+  background-color: #d1eaff;
+  opacity: 0.6;
+  height: 100%;
+  border-top: 1px dashed #a0cfff;
+  font-size: 0.75rem;
+  padding-left: 6px;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+
+.add-button {
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
+  margin-left: auto;
+  margin-right: 8px;
+  cursor: pointer;
+}

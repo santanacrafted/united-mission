@@ -1,0 +1,90 @@
+<!-- Hero Section -->
+<section
+  class="relative bg-cover bg-center text-white py-24 px-6 md:px-12"
+  style="background-image: url('https://images.unsplash.com/photo-1519491050282-cf00c82424b4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"
+>
+  <div class="absolute inset-0 bg-black/60"></div>
+  <div class="relative max-w-4xl mx-auto text-center z-10">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow">
+      {{ 'ABOUT_PAGE_HEADER' | translate }}
+    </h1>
+    <p class="text-xl md:text-2xl font-light drop-shadow">
+      {{ 'ABOUT_PAGE_TAGLINE' | translate }}
+    </p>
+  </div>
+</section>
+
+  
+  <!-- Mission & Vision -->
+  <section class="py-16 px-6 md:px-12 text-center bg-[#f2f7f9]">
+    <div class="max-w-4xl mx-auto space-y-8">
+      <div>
+        <h2 class="text-3xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_MISSION_HEADER' | translate }}</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_MISSION_TEXT' | translate }}</p>
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_VISION_HEADER' | translate }}</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_VISION_TEXT' | translate }}</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pastor Message -->
+  <section class="py-16 px-6 md:px-12 bg-white">
+    <div class="max-w-5xl mx-auto md:flex items-center gap-10">
+      <img
+      src="https://media.istockphoto.com/id/2164799931/photo/businessman-portrait-with-arms-crossed.jpg?s=1024x1024&w=is&k=20&c=EDPIEVk6zEMPSi_24ldfL_gpH5q94CMqNx8gr0isi8k="
+      alt="Pastor"
+      class="w-40 h-40 rounded-full object-cover object-center mx-auto md:mx-0 shadow-lg"
+    />
+          <div class="text-center md:text-left mt-6 md:mt-0">
+        <h2 class="text-2xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_PASTOR_HEADER' | translate }}</h2>
+        <p class="text-gray-700 leading-relaxed">{{ 'ABOUT_PAGE_PASTOR_TEXT' | translate }}</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- History -->
+  <section class="py-16 px-6 md:px-12 text-center bg-amber-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_HISTORY_HEADER' | translate }}</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_HISTORY_TEXT' | translate }}</p>
+    </div>
+  </section>
+  
+  <!-- Beliefs -->
+  <section class="py-16 px-6 md:px-12 bg-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_BELIEFS_HEADER' | translate }}</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_BELIEFS_TEXT' | translate }}</p>
+    </div>
+  </section>
+  
+  <!-- Team Members -->
+  <section class="py-16 px-6 md:px-12 bg-[#f2f7f9] text-center">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-[#005480] mb-10">{{ 'ABOUT_PAGE_TEAM_HEADER' | translate }}</h2>
+      <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        <div *ngFor="let leader of leaders" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+          <img
+          [src]="leader.photo"
+          [alt]="leader.name"
+          class="w-28 h-28 object-cover object-top rounded-full mx-auto mb-4 border-4 border-white shadow-md"
+        />
+                  <h3 class="font-semibold text-lg">{{ leader.name }}</h3>
+          <p class="text-sm text-gray-600">{{ leader.role }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <section class="py-16 px-6 md:px-12 bg-white text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_INVITE_HEADER' | translate }}</h2>
+      <p class="text-gray-700 mb-6 text-lg leading-relaxed">{{ 'ABOUT_PAGE_INVITE_TEXT' | translate }}</p>
+      <app-button [type]="'link'" [path]="'/visit'" class="flex justify-center content-center"
+      [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
+      [backgroundColor]="'#005480'" [label]="('ABOUT_PAGE_INVITE_BUTTON' | translate)"></app-button>
+    </div>
+  </section>

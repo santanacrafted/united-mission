@@ -1,0 +1,65 @@
+
+  <ng-container *ngIf="isMobile; else desktopView">
+    <div class="mobile-swiper relative overflow-hidden w-full h-screen flex items-center justify-center bg-white text-white">
+        <!-- Close button -->
+        <button
+          class="absolute top-4 right-4 text-black text-2xl z-20"
+          (click)="dialogRef.close()"
+        >
+          ✕
+        </button>
+      
+        <!-- Image Wrapper with slide animation -->
+        <div
+        class="absolute inset-0 flex"
+        [ngClass]="{ 'transition-transform duration-300 ease-in-out': !isDragging }"
+        [ngStyle]="{
+          transform: 'translateX(' + swipeOffset + 'px)'
+        }"
+      >
+        <div
+          *ngFor="let img of images"
+          class="min-w-full h-full flex items-center justify-center"
+        >
+          <img
+            [src]="img"
+            class="max-h-[85vh] max-w-full object-contain px-4"
+            alt="Image"
+          />
+        </div>
+      </div>
+      
+      
+        <!-- Swipe area -->
+        <div
+          class="absolute inset-0 z-10"
+          (touchstart)="onTouchStart($event)"
+          (touchmove)="onTouchMove($event)"
+          (touchend)="onTouchEnd()"
+        ></div>
+      </div>
+      
+  </ng-container>
+  <ng-template #desktopView>
+    <div class="viewer-container">
+        <!-- Close Button -->
+        <button class="close-btn" mat-icon-button (click)="dialogRef.close()">
+          ✕
+        </button>
+      
+        <!-- Navigation -->
+        <button class="nav-btn prev" (click)="prevImage()">‹</button>
+      
+        <!-- Image Display -->
+        <img
+          [src]="currentImage"
+          [@fadeState]="currentIndex"          
+          alt="Image"
+          class="viewer-image"
+          *ngIf="currentImage"
+        />
+      
+        <button class="nav-btn next" (click)="nextImage()">›</button>
+      </div>
+  </ng-template>
+  

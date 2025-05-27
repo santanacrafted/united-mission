@@ -1,0 +1,33 @@
+<div class="p-5">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
+    <!-- Card 1: Full content -->
+    <app-info-card
+      image="https://media.istockphoto.com/id/678675846/photo/3d-code-sign.jpg?s=612x612&w=0&k=20&c=1G2irvtFV7ybFm_1-4Lfh-15bj2P8GZKO1aHp6P1UhA="
+      title="Build Faster"
+      description="Speed up your web projects with reusable Angular components."
+      buttonLabel="Learn More"
+      buttonRoute="/learn-more"
+      badge="New"
+      icon="bolt">
+    </app-info-card>
+  
+    <!-- Card 2: No image, no icon -->
+    <app-info-card
+      title="Get Started"
+      description="Kickstart your Angular journey with a clean starter template."
+      buttonLabel="Start Now"
+      buttonRoute="/start">
+    </app-info-card>
+  
+    <!-- Card 3: Image + icon only -->
+    <app-info-card
+      image="https://budibase.com/no-code-tools/no-code-tools.png"
+      title="Developer Tools"
+      buttonLabel="Explore"
+      buttonRoute="/tools"
+      icon="build">
+    </app-info-card>
+  </div>
+</div>
+
+

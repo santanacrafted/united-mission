@@ -1,0 +1,91 @@
+<section class="bg-[#fefcf8] py-8 sm:py-16 px-6 md:px-12">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">
+        {{ 'CONTACT_PAGE_HEADER' | translate }}
+      </h2>
+      <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
+        {{ 'CONTACT_PAGE_INTRO' | translate }}
+      </p>
+  
+      <!-- Contact Info -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
+        <div>
+          <h3 class="text-xl font-semibold text-[#005480] mb-2">
+            {{ 'CONTACT_PAGE_ADDRESS_HEADER' | translate }}
+          </h3>
+          <p class="text-gray-700">
+            {{ 'CONTACT_PAGE_ADDRESS' | translate }}
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-[#005480] mb-2">
+            {{ 'CONTACT_PAGE_PHONE_HEADER' | translate }}
+          </h3>
+          <p class="text-gray-700">
+            {{ 'CONTACT_PAGE_PHONE' | translate }}
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-[#005480] mb-2">
+            {{ 'CONTACT_PAGE_EMAIL_HEADER' | translate }}
+          </h3>
+          <p class="text-gray-700">
+            {{ 'CONTACT_PAGE_EMAIL' | translate }}
+          </p>
+        </div>
+      </div>
+  
+<!-- Contact Form -->
+<div class="bg-white shadow-lg rounded-lg p-6 md:p-10 max-w-3xl mx-auto mb-12">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="{{ 'CONTACT_FORM_NAME' | translate }}"
+      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
+    />
+    <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-red-500 text-sm">
+      Name is required.
+    </div>
+
+    <input
+      type="email"
+      formControlName="email"
+      placeholder="{{ 'CONTACT_FORM_EMAIL' | translate }}"
+      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
+    />
+    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500 text-sm">
+      A valid email is required.
+    </div>
+
+    <textarea
+      rows="5"
+      formControlName="message"
+      placeholder="{{ 'CONTACT_FORM_MESSAGE' | translate }}"
+      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
+    ></textarea>
+    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-red-500 text-sm">
+      Message is required.
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="contactForm.invalid"
+      class="bg-[#005480] text-white px-6 py-3 rounded-md hover:bg-[#003d5d] transition font-medium w-full disabled:opacity-50"
+    >
+      {{ 'CONTACT_FORM_SUBMIT' | translate }}
+    </button>
+  </form>
+</div>
+
+  
+      <!-- Google Map -->
+      <div class="rounded-lg overflow-hidden shadow-lg h-64 md:h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.022175285718!2d-122.41941568468195!3d37.77492977975973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6adf6a35%3A0x4f4e5d77407cb5a4!2sYour%20Church%20Address!5e0!3m2!1sen!2sus!4v1614124092995!5m2!1sen!2sus"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+  

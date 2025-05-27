@@ -1,0 +1,77 @@
+<div class="calendar">
+    <div class="calendar-header">
+      <button *ngIf="viewMode === 'day'" (click)="backToMonth()">← Back</button>
+      <div *ngIf="viewMode === 'month'" class="month-controls relative flex items-center justify-between w-full px-4">
+        <button class="cursor-pointer" (click)="prevMonth()">←</button>
+        <h2>{{ currentMonth | date: 'MMMM yyyy' }}</h2>
+        <button class="cursor-pointer" (click)="nextMonth()">→</button>
+      </div>
+      <h2 *ngIf="viewMode === 'day'">{{ selectedDate | date: 'fullDate' }}</h2>
+    </div>
+  
+    <!-- Month View -->
+    <div class="calendar-grid" *ngIf="viewMode === 'month'">
+      <div class="day-name" *ngFor="let d of ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']">{{ d }}</div>
+      <div
+        class="calendar-cell"
+        *ngFor="let day of calendarDays"
+        [class.outside]="!day.isCurrentMonth"
+        (click)="selectDate(day.date)"
+      >
+        <div class="day-number">{{ day.date.getDate() }}</div>
+        <div class="marker-row" *ngIf="getEventCategories(day.date).length">
+          <div
+            class="event-marker"
+            *ngFor="let cat of getEventCategories(day.date)"
+            [ngClass]="cat">
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    <!-- Day View -->
+    <div *ngIf="viewMode === 'day'" class="day-view">
+      <div *ngFor="let hour of hours" class="hour-slot" (click)="openAddEventDialog(hour)">
+        <span class="hour-label">{{ hour }}</span>
+        <div class="hour-events">
+          <div
+          class="event"
+          *ngFor="let event of eventsForHour(hour)"
+          [style.height.px]="getEventBlockHeight(event, hour)"
+          [ngClass]="event.category || 'default'" (click)="openEventPopup(event, $event)"
+        >
+          <ng-container *ngIf="isStartOfEvent(event, hour); else continued">
+            {{ event.title }}
+          </ng-container>
+          <ng-template #continued>
+            <div class="continued" [ngClass]="event.category || 'default'">
+              ↳ {{ event.title }}
+            </div>
+          </ng-template>
+        </div>
+        
+        
+        </div>
+      </div>
+    </div>
+  
+    <!-- Add Event Popup -->
+    <div class="popup-backdrop" *ngIf="showPopup">
+      <div class="popup-modal">
+        <h3>New Event at {{ popupTime }}</h3>
+        <input #titleInput type="text" placeholder="Event title" />
+        <button (click)="addEvent()">Save</button>
+        <button (click)="showPopup = false">Cancel</button>
+      </div>
+    </div>
+  
+    <div class="popup-backdrop" *ngIf="showEventPopup">
+      <div class="popup-modal">
+        <h3>{{ selectedEvent?.title }}</h3>
+        <input #titleInput type="text" placeholder="Event title" />
+        <button (click)="addEvent()">Save</button>
+        <button (click)="showPopup = false">Cancel</button>
+      </div>
+    </div>
+  </div>

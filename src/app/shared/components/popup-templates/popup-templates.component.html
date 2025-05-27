@@ -1,0 +1,204 @@
+<!-- Confirmation Dialog -->
+<ng-template #confirm let-close="close" let-data="data">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-4">Are you sure?</h2>
+    <p class="mb-6">{{ data?.message || "Do you want to proceed?" }}</p>
+    <div class="flex justify-end gap-4">
+      <button class="cursor-pointer" mat-button (click)="close(false)">
+        Cancel
+      </button>
+      <button class="cursor-pointer" mat-raised-button color="warn" (click)="close(true)">
+        Yes, Delete
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Add Ministry -->
+<ng-template #addMinistry let-close="close" let-name="name">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-4">Add {{ name }}</h2>
+    <input class="w-full p-2 border mb-4" placeholder="Ministry Name" [(ngModel)]="ministryName" />
+    <div class="flex justify-end gap-4">
+      <button mat-button (click)="close()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="close(ministryName)">
+        Add
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Info Popup -->
+<ng-template #info let-close="close" let-data="data">
+  <div class="p-6">
+    <h2 class="text-lg font-bold mb-2">{{ data?.title || "Info" }}</h2>
+    <p class="mb-4">
+      {{ data?.message || "Here is some important information." }}
+    </p>
+    <div class="flex justify-end">
+      <button mat-button (click)="close()">Close</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #addEventTemplate let-saveEvent="saveEvent" let-close="close">
+  <div class="w-[600px] bg-white rounded-2xl shadow-xl p-6 space-y-4 text-sm">
+    <h2 class="text-lg font-semibold text-gray-800">Create Event</h2>
+
+    <!-- Title -->
+    <input type="text" placeholder="Event title" [(ngModel)]="newEvent.title"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <!-- Description -->
+    <textarea placeholder="Description" rows="3" [(ngModel)]="newEvent.description"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+
+    <!-- Date & Time -->
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 items-center">
+      <!-- Date -->
+      <input type="date" [(ngModel)]="newEvent.date"
+        class="col-span-2 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+      <!-- Start Time -->
+      <input type="time" [(ngModel)]="newEvent.startTime"
+        class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+      <!-- End Time -->
+      <input type="time" [(ngModel)]="newEvent.endTime"
+        class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <!-- Location -->
+    <input type="text" placeholder="Location" [(ngModel)]="newEvent.location"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <!-- Attachment -->
+    <label class="block text-gray-500 text-sm">Attach Document</label>
+    <input type="file"
+      class="block w-full text-sm text-gray-600 file:mr-4 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
+      (change)="onFileSelected($event)" />
+
+    <!-- Category -->
+    <select [(ngModel)]="newEvent.category"
+      class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <option value="" disabled selected>Select category</option>
+      <option value="meeting">Meeting</option>
+      <option value="birthday">Birthday</option>
+      <option value="call">Call</option>
+      <option value="deadline">Deadline</option>
+    </select>
+
+    <!-- Actions -->
+    <div class="flex justify-end gap-3 pt-2">
+      <button type="button" class="px-4 py-2 rounded-md bg-gray-100 hover:bg-gray-200 text-gray-700" (click)="close()">
+        Cancel
+      </button>
+      <button type="button" class="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-medium"
+        (click)="saveEvent(newEvent)">
+        Save
+      </button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #prayerTemplate let-prayerForm="prayerForm" let-onSubmit="onSubmit" let-close="close">
+  <section>
+    <div class="rounded-md py-12 px-6 md:px-12 relative bg-white">
+      <!-- Close Button -->
+      <button (click)="close()" aria-label="Close"
+        class="absolute top-4 right-6 text-gray-500 hover:text-gray-700 text-3xl font-bold focus:outline-none">
+        &times;
+      </button>
+
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-[#005480] mb-4">
+          {{ "PRAYER_REQUEST_POPUP_HEADER" | translate }}
+        </h2>
+        <p class="text-gray-700 mb-8 max-w-[500px] mx-auto">
+          {{ "PRAYER_REQUEST_POPUP_DESCRIPTION" | translate }}
+        </p>
+
+        <form [formGroup]="prayerForm" (ngSubmit)="onSubmit()" class="space-y-6 text-left">
+          <!-- Name -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              {{ 'NAME' | translate }}
+            </label>
+            <input type="text" formControlName="name"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005480]" />
+            <div *ngIf="prayerForm.get('name')?.touched && prayerForm.get('name')?.invalid"
+              class="text-sm text-red-600 mt-1">
+              {{ 'NAME_REQUIRED' | translate }}
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              {{ 'EMAIL' | translate }}
+            </label>
+            <input type="email" formControlName="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005480]" />
+            <div *ngIf="prayerForm.get('email')?.touched && prayerForm.get('email')?.invalid"
+              class="text-sm text-red-600 mt-1">
+              <span *ngIf="prayerForm.get('email')?.errors?.['required']">
+                {{ 'EMAIL_REQUIRED' | translate }}
+              </span>
+              <span *ngIf="prayerForm.get('email')?.errors?.['email']">
+                {{ 'EMAIL_INVALID' | translate }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              {{ 'PRAYER_REQUEST' | translate }}
+            </label>
+            <textarea rows="5" formControlName="message"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#005480]"></textarea>
+            <div *ngIf="prayerForm.get('message')?.touched && prayerForm.get('message')?.invalid"
+              class="text-sm text-red-600 mt-1">
+              {{ 'MESSAGE_REQUIRED' | translate }}
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <app-button (click)="isLoading = true" [isLoading]="isLoading" [disabled]="!prayerForm.valid" class="flex justify-center content-center"
+              [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
+              [backgroundColor]="'#005480'" [label]="'SEND_PRAYER_BTN' | translate">
+            </app-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</ng-template>
+
+<ng-template #serviceTemplate let-service="service" let-close="close">
+  <div class="bg-white rounded-xl shadow p-6 border border-gray-100 relative max-w-md w-full mx-auto">
+
+    <!-- Header: Day & Time -->
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-semibold text-[#005480]">
+        {{ service.day | translate }}
+      </h3>
+      <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+        {{ service.time }}
+      </span>
+    </div>
+
+    <!-- Description -->
+    <p class="text-gray-700 text-base leading-relaxed mb-6">
+      {{ service.description }}
+    </p>
+
+    <!-- Bottom Close Button -->
+    <div class="text-center">
+      <button (click)="close()"
+        class="mt-2 inline-block px-5 py-2 bg-[#005480] text-white font-medium rounded-lg hover:bg-[#004065] transition">
+        {{ 'CLOSE' | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,4 @@
+<div class="px-4 py-12 max-w-7xl mx-auto text-center">
+    <app-modern-calendar [events]="myEvents" (newEvent)="onNewEvent($event)"
+    (updatedEvent)="onUpdatedEvent($event)" (deletedEvent)="onDeletedEvent($event)"></app-modern-calendar>
+</div>
