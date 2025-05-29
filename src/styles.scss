@@ -4,19 +4,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face {
-    font-family: 'TitiliumWeb';
-    src: url('/assets/fonts/titilium-web/TitilliumWeb-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'TitiliumWeb';
-    src: url('/assets/fonts/titilium-web/TitiliumWeb-Bold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-  }
 
   @font-face {
     font-family: 'AdventPro';
@@ -36,6 +23,24 @@
     font-family: 'AdventPro';
     src: url('/assets/fonts/advent-pro/AdventPro-Bold.ttf') format('truetype');
     font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'AdventPro';
+    src: url('/assets/fonts/titilium-web/TitiliumWeb-Regular.woff2') format('woff2'),
+         url('/assets/fonts/titilium-web/TitiliumWeb-Regular.woff') format('woff'),
+         url('/assets/fonts/titilium-web/TitiliumWeb-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'AdventPro';
+    src: url('/assets/fonts/titilium-web/TitiliumWeb-Bold.woff2') format('woff2'),
+         url('/assets/fonts/titilium-web/TitiliumWeb-Bold.woff') format('woff'),
+         url('/assets/fonts/titilium-web/TitiliumWeb-Bold.ttf') format('truetype');
+    font-weight: 600;
     font-style: normal;
   }
   
