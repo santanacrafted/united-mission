@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/church-website-template-basic/browser",
+    "public": "dist/united-mission/browser",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

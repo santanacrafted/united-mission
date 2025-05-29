@@ -33,4 +33,4 @@ jobs:
           echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud.json" >> $GITHUB_ENV
 
       - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project church-app-template-64ef2 --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase deploy --only hosting --project united-mission --token ${{ secrets.FIREBASE_TOKEN }}

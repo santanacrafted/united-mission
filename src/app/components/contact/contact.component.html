@@ -1,91 +1,112 @@
-<section class="bg-[#fefcf8] py-8 sm:py-16 px-6 md:px-12">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-4">
-        {{ 'CONTACT_PAGE_HEADER' | translate }}
-      </h2>
-      <p class="text-lg text-gray-700 mb-10 max-w-2xl mx-auto">
-        {{ 'CONTACT_PAGE_INTRO' | translate }}
-      </p>
-  
-      <!-- Contact Info -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-12">
-        <div>
-          <h3 class="text-xl font-semibold text-[#005480] mb-2">
-            {{ 'CONTACT_PAGE_ADDRESS_HEADER' | translate }}
-          </h3>
-          <p class="text-gray-700">
-            {{ 'CONTACT_PAGE_ADDRESS' | translate }}
-          </p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-[#005480] mb-2">
-            {{ 'CONTACT_PAGE_PHONE_HEADER' | translate }}
-          </h3>
-          <p class="text-gray-700">
-            {{ 'CONTACT_PAGE_PHONE' | translate }}
-          </p>
-        </div>
-        <div>
-          <h3 class="text-xl font-semibold text-[#005480] mb-2">
-            {{ 'CONTACT_PAGE_EMAIL_HEADER' | translate }}
-          </h3>
-          <p class="text-gray-700">
-            {{ 'CONTACT_PAGE_EMAIL' | translate }}
-          </p>
-        </div>
+<app-header
+  class="z-50 relative"
+  [layout]="'horizontal'"
+  [drawerBtnPosition]="'left'"
+  [drawerSide]="'left'"
+  [siteTitle]="''"
+  [logoUrl]="logoUrl"
+  [logoPosition]="'left'"
+  [logoHeight]="80"
+  [logoWidth]="140"
+  [logoStyles]="'h-13 absolute'"
+  [headerBorderBottom]="false"
+  [headerBoxShadow]="'medium'"
+  [showCTAButton]="true"
+  [ctaButtonLabel]="'Make An Impact'"
+  [ctaButtonStyles]="
+    'block bg-[#228B22] text-white text-center py-2 rounded-xl font-normal'
+  "
+></app-header>
+<section class="py-20 px-6 md:px-12 bg-white text-[#003d2e]">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
+    <p class="text-gray-600 mb-10 text-lg">
+      We'd love to hear from you. Fill out the form below and we'll get back to
+      you shortly.
+    </p>
+  </div>
+
+  <form
+    [formGroup]="contactForm"
+    (ngSubmit)="onSubmit()"
+    class="max-w-3xl mx-auto space-y-6"
+  >
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-sm font-semibold mb-1"
+        >Full Name</label
+      >
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-700"
+        placeholder="Your name"
+      />
+      <div
+        *ngIf="
+          contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        Name is required.
       </div>
-  
-<!-- Contact Form -->
-<div class="bg-white shadow-lg rounded-lg p-6 md:p-10 max-w-3xl mx-auto mb-12">
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
-    
-    <input
-      type="text"
-      formControlName="name"
-      placeholder="{{ 'CONTACT_FORM_NAME' | translate }}"
-      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
-    />
-    <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-red-500 text-sm">
-      Name is required.
     </div>
 
-    <input
-      type="email"
-      formControlName="email"
-      placeholder="{{ 'CONTACT_FORM_EMAIL' | translate }}"
-      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
-    />
-    <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500 text-sm">
-      A valid email is required.
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-sm font-semibold mb-1"
+        >Email Address</label
+      >
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-700"
+        placeholder="you@example.com"
+      />
+      <div
+        *ngIf="
+          contactForm.get('email')?.invalid && contactForm.get('email')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        Enter a valid email.
+      </div>
     </div>
 
-    <textarea
-      rows="5"
-      formControlName="message"
-      placeholder="{{ 'CONTACT_FORM_MESSAGE' | translate }}"
-      class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#005480]"
-    ></textarea>
-    <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-red-500 text-sm">
-      Message is required.
+    <!-- Message -->
+    <div>
+      <label for="message" class="block text-sm font-semibold mb-1"
+        >Message</label
+      >
+      <textarea
+        id="message"
+        formControlName="message"
+        rows="5"
+        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-700"
+        placeholder="Your message"
+      ></textarea>
+      <div
+        *ngIf="
+          contactForm.get('message')?.invalid &&
+          contactForm.get('message')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        Message is required.
+      </div>
     </div>
 
-    <button
-      type="submit"
-      [disabled]="contactForm.invalid"
-      class="bg-[#005480] text-white px-6 py-3 rounded-md hover:bg-[#003d5d] transition font-medium w-full disabled:opacity-50"
-    >
-      {{ 'CONTACT_FORM_SUBMIT' | translate }}
-    </button>
+    <!-- Submit Button -->
+    <div class="text-center">
+      <button
+        type="submit"
+        class="bg-blue-700 TitiliumWeb text-white px-6 py-3 rounded-md font-normal hover:bg-blue-900 transition"
+        [disabled]="contactForm.invalid"
+      >
+        Send Message
+      </button>
+    </div>
   </form>
-</div>
-
-  
-      <!-- Google Map -->
-      <div class="rounded-lg overflow-hidden shadow-lg h-64 md:h-96">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.022175285718!2d-122.41941568468195!3d37.77492977975973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6adf6a35%3A0x4f4e5d77407cb5a4!2sYour%20Church%20Address!5e0!3m2!1sen!2sus!4v1614124092995!5m2!1sen!2sus"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-  
+</section>

@@ -27,17 +27,17 @@ import { filter } from 'rxjs';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'church-website-template-basic';
-  logoUrl = '/logos/church-logo.png';
+  title = 'united-mission';
+  logoUrl = '/assets/images/logo.png';
   translationsReady = false;
 
   footerSections: FooterSection[] = [
     {
       title: 'FOOTER_QUICK_LINK_HEADER',
       links: [
-        { label: 'FOOTER_QUICK_LINK_2', path: '/give' },
+        { label: 'FOOTER_QUICK_LINK_1', path: '/donate' },
+        { label: 'FOOTER_QUICK_LINK_2', path: '/our-work' },
         { label: 'FOOTER_QUICK_LINK_3', path: '/contact' },
-        { label: 'FOOTER_QUICK_LINK_4', path: '/kids-programs' },
       ],
     },
     {
@@ -60,6 +60,7 @@ export class AppComponent {
       ],
     },
   ];
+  isMobileMenuOpen = false;
 
   constructor(
     private translate: TranslateService,
@@ -79,6 +80,10 @@ export class AppComponent {
       .subscribe(() => {
         this.viewportScroller.scrollToPosition([0, 0]);
       });
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   switchLang(lang: string) {

@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyABLtKinRN0QECbmqUmYcwY712AK3QFxmc',
-    authDomain: 'church-app-template-64ef2.firebaseapp.com',
-    projectId: 'church-app-template-64ef2',
-    storageBucket: 'church-app-template-64ef2.firebasestorage.app',
-    messagingSenderId: '570171072726',
-    appId: '1:570171072726:web:90feb6f12194fb3f426977',
-    measurementId: 'G-QNXZDJ5MX8',
+    apiKey: 'AIzaSyCWGoKUP_6SXY7Z5ImZM6GuvosgPyBDROY',
+    authDomain: 'united-mission.firebaseapp.com',
+    projectId: 'united-mission',
+    storageBucket: 'united-mission.firebasestorage.app',
+    messagingSenderId: '295713502019',
+    appId: '1:295713502019:web:3a2f61709a269fc628b5f6',
+    measurementId: 'G-FKWQ7WFD2R',
   },
 };

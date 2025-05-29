@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GalleryEvent } from './gallery.model';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -21,16 +15,18 @@ import {
   selectGalleryLoading,
 } from '../../state/gallery/gallery.selector';
 import { PopupService } from '../../shared/services/popup/popup.service';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 @Component({
   selector: 'app-gallery',
-  imports: [CommonModule, InfoCardComponent, TranslateModule],
+  imports: [CommonModule, InfoCardComponent, TranslateModule, HeaderComponent],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent implements OnInit {
+  logoUrl: string = '/assets/images/logo.png';
   eventGalleries: {
     eventId: string;
-    title: { es: string; en: string };
+    name: { es: string; en: string };
     description: { es: string; en: string };
     coverImage: string;
     images: string[];
@@ -41,7 +37,6 @@ export class GalleryComponent implements OnInit {
   selectedEvent?: GalleryEvent;
   events$?: Observable<GalleryEvent[]>;
   selectGalleryLoading$?: Observable<boolean>;
-
   images$: Observable<string[]> = of([]);
 
   constructor(

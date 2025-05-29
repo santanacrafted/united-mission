@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import {
   NavigationConfig,
   NavItem,
@@ -8,6 +8,7 @@ import {
 import { NavigationSettings } from '../../../config/navigation/navigation-settings.config';
 import { dropdownAnimation } from '../../animations/dropdown.animation';
 import { TranslateModule } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
@@ -22,8 +23,10 @@ export class NavigationComponent {
   settings = NavigationSettings;
   @Input() layout?: string;
   @Output() onNavigationClicked = new EventEmitter<any>();
-
   show = true;
+  showFooterAndHeader = true;
+
+  constructor(public router: Router) {}
 
   // Layout class based on settings
   get layoutClasses() {

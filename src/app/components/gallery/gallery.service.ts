@@ -15,7 +15,7 @@ export class GalleryService {
   constructor(private firestore: Firestore) {}
 
   getGalleryEvents(): Observable<GalleryEvent[]> {
-    const ref = collection(this.firestore, 'galleryEvents');
+    const ref = collection(this.firestore, 'missions');
     return from(getDocs(ref)).pipe(
       map((snapshot) => {
         return snapshot.docs.map(
@@ -31,7 +31,7 @@ export class GalleryService {
 
   getEventImages(eventId: string): Promise<string[]> {
     const storage = getStorage();
-    const folderRef = ref(storage, `church-gallery/${eventId}`);
+    const folderRef = ref(storage, `united-mission-gallery/${eventId}`);
 
     return listAll(folderRef).then(async (res) => {
       const urls = await Promise.all(

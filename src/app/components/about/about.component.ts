@@ -1,51 +1,98 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ButtonComponent } from '../../shared/components/button/button.component';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, TranslateModule, ButtonComponent],
+  imports: [CommonModule, TranslateModule, HeaderComponent, RouterLink],
   templateUrl: './about.component.html',
 })
 export class AboutComponent {
-  leaders = [
+  logoUrl: string = '/assets/images/logo.png';
+  team = [
     {
-      name: 'Pastor John Ramirez',
-      role: 'Lead Pastor',
-      photo:
-        'https://media.istockphoto.com/id/2164799931/photo/businessman-portrait-with-arms-crossed.jpg?s=1024x1024&w=is&k=20&c=EDPIEVk6zEMPSi_24ldfL_gpH5q94CMqNx8gr0isi8k=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/UMJose_edited.webp',
+      name: 'Jose Santanas',
+      role: 'Founder and Chief Executive Officer',
     },
     {
-      name: 'Maria Lopez',
-      role: 'Worship Ministry Leader',
-      photo:
-        'https://media.istockphoto.com/id/2070897862/photo/cheerful-young-woman-smiling-positive-and-joyful-happy-curly-haired-student-laughing-looking.jpg?s=1024x1024&w=is&k=20&c=Id_vE9cF8YiHIKFH3JvUopESyZ23WtNORuaFOcicqVA=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/andrew.webp',
+      name: 'Andrew Peret',
+      role: 'Founder and Chief Operating Officer',
     },
     {
-      name: 'Carlos Gomez',
-      role: 'Youth Pastor',
-      photo:
-        'https://media.istockphoto.com/id/1949501832/photo/handsome-hispanic-senior-business-man-with-crossed-arms-smiling-at-camera-indian-or-latin.jpg?s=1024x1024&w=is&k=20&c=r7kQcwLCz2LvMZlHZlssIvHLhAgllsh-tRlw4tYdpjc=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/Yolli+UM+foto.webp',
+      name: 'Yolanda Acevedo',
+      role: 'Project Development Manager',
     },
     {
-      name: 'Elena Rivera',
-      role: 'Women’s Ministry Coordinator',
-      photo:
-        'https://media.istockphoto.com/id/2156062809/photo/headshot-closeup-portrait-middle-eastern-israel-businesswoman-business-lady-standing-isolated.jpg?s=1024x1024&w=is&k=20&c=FMZoDL-kjLTUfdDCCP21BaeUCft3MObtnLFfcAn268Y=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/teron.webp',
+      name: 'Francisco Terón',
+      role: 'Field Operations Supervisor',
     },
     {
-      name: 'David Torres',
-      role: 'Men’s Ministry Leader',
-      photo:
-        'https://media.istockphoto.com/id/2160439329/photo/happy-multiethnic-male-teacher-smiling-at-primary-school.jpg?s=1024x1024&w=is&k=20&c=U1g9UIavWXjdpteh1eAs_D_Mof_3JTHQK_n433IASuI=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/Oddi+Diaz_pic3.webp',
+      name: 'Oddi Diaz',
+      role: 'Field Operations Supervisor',
     },
     {
-      name: 'Sarah Martinez',
-      role: 'Children’s Ministry Director',
-      photo:
-        'https://media.istockphoto.com/id/1770305449/photo/serious-portrait-leader-and-mature-woman-in-office-with-confidence-pride-and-business.jpg?s=1024x1024&w=is&k=20&c=xiVLKwkGYjpEc4xPIlH9w2qs_XJfJJHiiKaaPProeO8=',
+      image: 'https://d337lrhmtj9qpq.cloudfront.net/team/ashton.webp',
+      name: 'Ashton Santana',
+      role: 'Director of Operations',
+    },
+    {
+      image:
+        'https://d337lrhmtj9qpq.cloudfront.net/team/FD0C739B-06AF-4A4E-A52E-A532C5D70B85.jpeg',
+      name: 'Kristina Santana',
+      role: 'Director of Social Media',
+    },
+    {
+      image: '',
+      name: 'Darren Santana',
+      role: 'Director of Technology',
     },
   ];
+  lightboxVisible = false;
+  lightboxImage: string = '';
+
+  // Animation origin state
+  originTop = 0;
+  originLeft = 0;
+  originWidth = 0;
+  originHeight = 0;
+
+  openLightbox(event: MouseEvent, src: string) {
+    const target = event.target as HTMLElement;
+    const rect = target.getBoundingClientRect();
+
+    // Set starting dimensions
+    this.originTop = rect.top;
+    this.originLeft = rect.left;
+    this.originWidth = rect.width;
+    this.originHeight = rect.height;
+
+    this.lightboxImage = src;
+    this.lightboxVisible = true;
+
+    // Animate to center (after a small delay)
+    setTimeout(() => {
+      this.originTop = window.innerHeight / 2 - window.innerHeight * 0.45;
+      this.originLeft = window.innerWidth / 2 - window.innerWidth * 0.45;
+      this.originWidth = window.innerWidth * 0.9;
+      this.originHeight = window.innerHeight * 0.9;
+    }, 10); // Slight delay so it animates from initial
+  }
+
+  closeLightbox() {
+    this.lightboxVisible = false;
+    this.lightboxImage = '';
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscape() {
+    this.closeLightbox();
+  }
 }

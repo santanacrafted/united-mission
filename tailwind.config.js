@@ -13,8 +13,21 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        'full-plus-120': 'calc(100% + 120px)',
+      },
       fontFamily: {
-        winky: ['"Winky Rough"', 'sans-serif'],
+        AdventPro: ['"AdventPro"', 'TitiliumWeb', 'sans-serif'],
+        TitiliumWeb: ['"TitiliumWeb"', 'AdventPro', 'sans-serif'],
+      },
+      keyframes: {
+        'fade-in-up': {
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fade-in-up 1s ease-out',
       },
     },
   },

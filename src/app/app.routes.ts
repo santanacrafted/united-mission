@@ -12,6 +12,8 @@ import { GiveComponent } from './components/give/give.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermServiceComponent } from './components/term-service/term-service.component';
 import { KidsProgramsComponent } from './components/kids-programs/kids-programs.component';
+import { DonateComponent } from './components/donate/donate.component';
+import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
 
 export const routes: Routes = [
   {
@@ -27,19 +29,19 @@ export const routes: Routes = [
     component: ContactComponent,
   },
   {
-    path: 'info-cards',
-    component: InfoCardsComponent,
+    path: 'get-involved',
+    component: GetInvolvedComponent,
   },
   {
-    path: 'calendar',
-    component: CalendarComponent,
+    path: 'donate',
+    component: DonateComponent,
   },
   {
     path: 'visit',
     component: VisitComponent,
   },
   {
-    path: 'gallery',
+    path: 'our-work',
     component: GalleryComponent,
   },
   {

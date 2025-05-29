@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "church-website-template-basic": {
+    "united-mission": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/church-website-template-basic",
+            "outputPath": "dist/united-mission",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "church-website-template-basic:build:production"
+              "buildTarget": "united-mission:build:production"
             },
             "development": {
-              "buildTarget": "church-website-template-basic:build:development"
+              "buildTarget": "united-mission:build:development"
             }
           },
           "defaultConfiguration": "development"

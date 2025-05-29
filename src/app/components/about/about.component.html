@@ -1,90 +1,192 @@
-<!-- Hero Section -->
-<section
-  class="relative bg-cover bg-center text-white py-24 px-6 md:px-12"
-  style="background-image: url('https://images.unsplash.com/photo-1519491050282-cf00c82424b4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"
->
-  <div class="absolute inset-0 bg-black/60"></div>
-  <div class="relative max-w-4xl mx-auto text-center z-10">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow">
-      {{ 'ABOUT_PAGE_HEADER' | translate }}
-    </h1>
-    <p class="text-xl md:text-2xl font-light drop-shadow">
-      {{ 'ABOUT_PAGE_TAGLINE' | translate }}
+<app-header
+  class="z-50 relative"
+  [layout]="'horizontal'"
+  [drawerBtnPosition]="'left'"
+  [drawerSide]="'left'"
+  [siteTitle]="''"
+  [logoUrl]="logoUrl"
+  [logoPosition]="'left'"
+  [logoHeight]="80"
+  [logoWidth]="140"
+  [logoStyles]="'h-13 absolute'"
+  [headerBorderBottom]="false"
+  [headerBoxShadow]="'medium'"
+  [showCTAButton]="true"
+  [ctaButtonLabel]="'Make An Impact'"
+  [ctaButtonStyles]="
+    'block bg-[#228B22] text-white text-center py-2 rounded-xl font-normal'
+  "
+></app-header>
+<section class="bg-white text-[#003d2e]">
+  <!-- About Section -->
+  <div class="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">About United Mission International</h2>
+    <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-12">
+      United Mission International is dedicated to transforming lives around the
+      world through compassion, service, and the love of Christ. We focus on
+      providing shelter, food, education, and healthcare to those in need, while
+      sharing a message of hope and faith.
     </p>
+    <div class="grid md:grid-cols-2 gap-10 text-left">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4 text-blue-700">Our Mission</h3>
+        <p class="text-gray-600">
+          To empower communities globally by meeting physical, emotional, and
+          spiritual needs through outreach programs and sustainable solutions.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold mb-4 text-blue-700">Our Vision</h3>
+        <p class="text-gray-600">
+          A world where every individual has access to the resources and
+          opportunities they need to live with dignity, purpose, and hope.
+        </p>
+      </div>
+    </div>
   </div>
-</section>
 
-  
-  <!-- Mission & Vision -->
-  <section class="py-16 px-6 md:px-12 text-center bg-[#f2f7f9]">
-    <div class="max-w-4xl mx-auto space-y-8">
-      <div>
-        <h2 class="text-3xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_MISSION_HEADER' | translate }}</h2>
-        <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_MISSION_TEXT' | translate }}</p>
+  <!-- What We Do Unique Layout Section -->
+  <div class="bg-[#f7fafc] py-20 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">What We Do</h2>
+        <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+          Discover our global impact through immersive visuals and meaningful
+          outreach efforts.
+        </p>
       </div>
-      <div>
-        <h2 class="text-3xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_VISION_HEADER' | translate }}</h2>
-        <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_VISION_TEXT' | translate }}</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Pastor Message -->
-  <section class="py-16 px-6 md:px-12 bg-white">
-    <div class="max-w-5xl mx-auto md:flex items-center gap-10">
-      <img
-      src="https://media.istockphoto.com/id/2164799931/photo/businessman-portrait-with-arms-crossed.jpg?s=1024x1024&w=is&k=20&c=EDPIEVk6zEMPSi_24ldfL_gpH5q94CMqNx8gr0isi8k="
-      alt="Pastor"
-      class="w-40 h-40 rounded-full object-cover object-center mx-auto md:mx-0 shadow-lg"
-    />
-          <div class="text-center md:text-left mt-6 md:mt-0">
-        <h2 class="text-2xl font-bold text-[#005480] mb-4">{{ 'ABOUT_PAGE_PASTOR_HEADER' | translate }}</h2>
-        <p class="text-gray-700 leading-relaxed">{{ 'ABOUT_PAGE_PASTOR_TEXT' | translate }}</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- History -->
-  <section class="py-16 px-6 md:px-12 text-center bg-amber-50">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_HISTORY_HEADER' | translate }}</h2>
-      <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_HISTORY_TEXT' | translate }}</p>
-    </div>
-  </section>
-  
-  <!-- Beliefs -->
-  <section class="py-16 px-6 md:px-12 bg-white text-center">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_BELIEFS_HEADER' | translate }}</h2>
-      <p class="text-gray-700 text-lg leading-relaxed">{{ 'ABOUT_PAGE_BELIEFS_TEXT' | translate }}</p>
-    </div>
-  </section>
-  
-  <!-- Team Members -->
-  <section class="py-16 px-6 md:px-12 bg-[#f2f7f9] text-center">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-[#005480] mb-10">{{ 'ABOUT_PAGE_TEAM_HEADER' | translate }}</h2>
-      <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-        <div *ngFor="let leader of leaders" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h3 class="text-2xl font-semibold text-blue-700">
+            Transforming Lives
+          </h3>
+          <p class="text-gray-600">
+            From disaster relief to long-term education, our work meets urgent
+            needs while creating sustainable futures.
+          </p>
+          <p class="text-gray-600">
+            We collaborate with local leaders to deliver effective programs
+            rooted in dignity and empowerment.
+          </p>
+        </div>
+        <!-- Lightbox Overlay -->
+        <div
+          *ngIf="lightboxVisible"
+          class="fixed inset-0 bg-black/70 z-50 overflow-hidden flex items-center justify-center"
+          (click)="closeLightbox()"
+        >
           <img
-          [src]="leader.photo"
-          [alt]="leader.name"
-          class="w-28 h-28 object-cover object-top rounded-full mx-auto mb-4 border-4 border-white shadow-md"
-        />
-                  <h3 class="font-semibold text-lg">{{ leader.name }}</h3>
-          <p class="text-sm text-gray-600">{{ leader.role }}</p>
+            #lightboxImg
+            [src]="lightboxImage"
+            alt="Zoomed"
+            style="box-shadow: none"
+            [ngStyle]="{
+              top: originTop + 'px',
+              left: originLeft + 'px',
+              width: originWidth + 'px',
+              height: originHeight + 'px'
+            }"
+            class="absolute object-contain rounded-xl shadow-xl transition-all duration-300 ease-out"
+            [class.scale-100]="true"
+            [class.opacity-100]="true"
+          />
+        </div>
+
+        <!-- Image Grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            class="bg-center bg-cover bg-gray-300 h-40 rounded-xl cursor-pointer"
+            style="
+              background-image: url('https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0266.webp');
+            "
+            (click)="
+              openLightbox(
+                $event,
+                'https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0266.webp'
+              )
+            "
+          ></div>
+
+          <div
+            class="bg-center bg-cover bg-gray-300 h-80 rounded-xl cursor-pointer"
+            style="
+              background-image: url('https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0241.webp');
+            "
+            (click)="
+              openLightbox(
+                $event,
+                'https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0241.webp'
+              )
+            "
+          ></div>
+
+          <div
+            class="bg-center bg-cover bg-gray-300 h-80 rounded-xl cursor-pointer"
+            style="
+              background-image: url('https://firebasestorage.googleapis.com/v0/b/united-mission.firebasestorage.app/o/united-mission-gallery%2Fkenya%2FPHOTO-2024-01-05-13-20-08.jpg?alt=media&token=8cb7134d-5710-4434-90ea-a5e2af1540e6');
+            "
+            (click)="
+              openLightbox(
+                $event,
+                'https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0241.webp'
+              )
+            "
+          ></div>
+
+          <div
+            class="bg-center bg-cover bg-gray-300 h-40 rounded-xl cursor-pointer"
+            style="
+              background-image: url('https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0250.webp');
+            "
+            (click)="
+              openLightbox(
+                $event,
+                'https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0250.webp'
+              )
+            "
+          ></div>
         </div>
       </div>
     </div>
-  </section>
-  
-  <!-- Call to Action -->
-  <section class="py-16 px-6 md:px-12 bg-white text-center">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl font-bold text-[#005480] mb-6">{{ 'ABOUT_PAGE_INVITE_HEADER' | translate }}</h2>
-      <p class="text-gray-700 mb-6 text-lg leading-relaxed">{{ 'ABOUT_PAGE_INVITE_TEXT' | translate }}</p>
-      <app-button [type]="'link'" [path]="'/visit'" class="flex justify-center content-center"
-      [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'"
-      [backgroundColor]="'#005480'" [label]="('ABOUT_PAGE_INVITE_BUTTON' | translate)"></app-button>
+  </div>
+
+  <!-- Meet the Team - Larger Version -->
+  <div class="bg-white py-24 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl font-bold text-blue-800 mb-16">Meet Our Team</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-14">
+        <div
+          *ngFor="let member of team"
+          class="group text-center transition-transform transform hover:scale-105"
+        >
+          <img
+            [src]="member.image"
+            alt="{{ member.name }}"
+            class="w-40 h-40 rounded-full mx-auto mb-6 object-cover shadow-lg"
+          />
+          <h3 class="text-xl font-semibold text-[#003d2e]">
+            {{ member.name }}
+          </h3>
+          <p class="text-base text-gray-500">{{ member.role }}</p>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Donate Section -->
+  <div class="py-16 px-6 md:px-12 bg-[#013399] text-white text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-4">Be Part of the Mission</h2>
+      <p class="text-lg mb-6">
+        Your generosity powers our mission. Help us build stronger communities,
+        one act of love at a time.
+      </p>
+      <a
+        routerLink="donate"
+        class="inline-block bg-white text-blue-900 px-8 py-3 rounded-xl font-normal TitiliumWeb hover:opacity-90 transition"
+      >
+        Donate Now
+      </a>
+    </div>
+  </div>
+</section>

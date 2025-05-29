@@ -1,90 +1,290 @@
-<main class="">
-  <app-swiper [items]="imageSliderArr" [autoplay]="true" [autoplaySpeed]="5000" [infinite]="true"
-    [swiperheight]="'!h-[24rem] sm:!h-[28rem] md:!h-[32rem] lg:!h-[35rem]'"
-    [slidesToShow]="1" [captionTextAlignment]="'text-center'" [showImageCaption]="true"
-    [defaultCaptionPosition]="'bottom-left'" type="image"></app-swiper>
+<app-header
+  class="z-10 relative"
+  [layout]="'horizontal'"
+  [drawerBtnPosition]="'left'"
+  [drawerSide]="'left'"
+  [siteTitle]="''"
+  [logoUrl]="logoUrl"
+  [logoPosition]="'left'"
+  [logoHeight]="80"
+  [logoWidth]="140"
+  [logoStyles]="'h-13 absolute'"
+  [headerBorderBottom]="true"
+  [headerBorderWidth]="'96%'"
+  [headerBoxShadow]="'none'"
+  [showCTAButton]="true"
+  [ctaButtonLabel]="'Make An Impact'"
+  [headerBackgroundColor]="'transparent'"
+  [ctaButtonStyles]="
+    'bg-transparent text-white border border-white px-4 py-2 rounded-xl hover:bg-white hover:text-black transition transform hover:scale-105'
+  "
+></app-header>
+<section class="bg-white text-[#003d2e] relative mt-[-113px] z-0">
+  <div
+    class="relative bg-cover bg-center h-[100vh] flex items-center justify-center text-center px-6"
+    style="
+      background-image: url('https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-one.webp');
+    "
+  >
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
-</main>
-<main>
-  <!-- Welcome Section -->
-  <section
-    class="py-8 md:py-28 px-6 md:px-12 text-center bg-cover">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl md:text-5xl font-bold text-[#005480] mb-10">{{ 'HOME_PAGE_WELCOME_HEADER' | translate }}</h2>
-      <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-        {{'HOME_PAGE_WELCOME_P_1' | translate}}
+    <div
+      class="relative z-10 bg-opacity-90 p-10 rounded-xl max-w-3xl shadow-2xl animate-fade-in-up"
+    >
+      <p class="text-lg text-white font-light uppercase tracking-widest mb-2">
+        United Mission International
       </p>
-      <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-        {{'HOME_PAGE_WELCOME_P_2' | translate}}
+      <h1 class="text-4xl md:text-5xl font-thin mb-4 text-white leading-tight">
+        Bringing Hope to the Forgotten
+      </h1>
+      <p class="text-md text-white mb-8">
+        Empowering communities through compassion, action, and faith.
       </p>
-      <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-        {{'HOME_PAGE_WELCOME_P_3' | translate}}
-      </p>
-      <app-button [path]="'/about'" [type]="'link'" class="flex justify-center content-center"
-        [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'" [backgroundColor]="'#005480'"
-        [label]="('HOME_PAGE_WELCOME_BUTTON' | translate)"></app-button>
-    </div>
-  </section>
-    <!-- Prayer Request Section -->
-    <section class="bg-amber-100 py-8 md:py-16 lg:py-20 px-4 md:px-12 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-2xl md:text-3xl font-bold text-[#005480] mb-4">
-          {{ 'HOME_PAGE_PRAYER_HEADER' | translate }}
-        </h2>
-        <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-          {{ 'HOME_PAGE_PRAYER_P1' | translate }}
-        </p>
-        <app-button (buttonClick)="openPrayerRequestPopup()" [type]="'button'"
-          class="flex justify-center content-center" [defaultClasses]="'hover:!bg-[#004466] transition'"
-          [padding]="'.7rem 1.5rem'" [backgroundColor]="'#005480'"
-          [label]="'HOME_PAGE_PRAYER_BUTTON' | translate"></app-button>
-      </div>
-    </section>
-  <!-- Latest Message Section -->
-  <section class="py-8 md:py-16 lg:py-28 px-4 md:px-12 text-center bg-amber-50">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-bold text-[#005480]">
-        {{ 'HOME_PAGE_SERMON_HEADER' | translate }}
-      </h2>
-
-      <div class="max-w-4xl mx-auto px-4 mt-6">
-        <app-video-embed [videoUrl]="'https://www.youtube.com/watch?v=isHYimNpEA4'"></app-video-embed>
-      </div>
-
-      <div class="mt-12 space-y-4">
-        <div class="w-24 h-1 mx-auto bg-[#005480] rounded-full"></div>
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-          {{ 'HOME_PAGE_SERMON_DESCRIPTION_1' | translate }}
-          <span class="text-[#005480] font-semibold">
-            {{ 'HOME_PAGE_SERMON_DESCRIPTION_1_BLUE' | translate }}
-          </span>
-        </p>
-        <p class="text-base text-gray-600">
-          {{ 'HOME_PAGE_SERMON_DESCRIPTION_2' | translate }}
-        </p>
-        <div class="mt-6 text-center">
-          <app-button [type]="'link'" [path]="'/visit'" class="flex justify-center content-center"
-            [defaultClasses]="'hover:!bg-[#004466] transition'" [padding]="'.7rem 1.5rem'" [backgroundColor]="'#005480'"
-            [label]="'HOME_PAGE_SERMON_BUTTON' | translate"></app-button>
-        </div>
+      <div class="flex justify-center flex-wrap gap-4">
+        <a
+          routerLink="about"
+          class="bg-white TitiliumWeb text-black px-8 py-3 rounded-xl font-normal transition transform hover:scale-105"
+        >
+          Learn More
+        </a>
+        <a
+          routerLink="donate"
+          class="bg-transparent border TitiliumWeb border-white text-white px-8 py-3 rounded-xl font-normal hover:bg-white hover:text-black transition transform hover:scale-105"
+        >
+          Give Now
+        </a>
       </div>
     </div>
-  </section>
-
-  <!-- Weekly Schedule -->
-  <section class="py-8 md:py-12 px-4 md:px-10 lg:px-20">
-    <h2 class="text-2xl font-bold text-[#005480] mb-6 text-center">
-      📅 {{ 'HOME_PAGE_SERVICE_SQUEDULE_HEADER' | translate }}
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-      <div *ngFor="let service of churchServices" (click)="openServicePopup(service)">
-        <div class="p-4 border rounded-lg shadow-sm bg-gray-50 transition transform hover:scale-[1.02] hover:shadow-xl duration-300 cursor-pointer">
-          <h3 class="text-lg font-semibold text-[#005480]">
-            {{ service.day | translate }}
+  </div>
+</section>
+<!-- Recent Projects -->
+<section class="bg-[#f7fafc] py-20 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-12">Our Global Impact</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Clean Water Project -->
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg h-48 group flex items-center justify-center text-center"
+        style="
+          background-image: url('https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0202.webp');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div
+          class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300"
+        ></div>
+        <div class="relative z-10 text-white px-4">
+          <h3 class="text-2xl font-semibold mb-1">
+            Clean Water & Food Security
           </h3>
-          <p class="text-gray-600">{{service.time}}</p>
+          <p class="text-md">
+            We provide clean drinking water, distribute nutritious meals, and
+            support communities in planting crops for sustainable food access.
+          </p>
+        </div>
+      </div>
+
+      <!-- Shelter & Facilities Project -->
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg h-48 group flex items-center justify-center text-center"
+        style="
+          background-image: url('https://firebasestorage.googleapis.com/v0/b/united-mission.firebasestorage.app/o/united-mission-gallery%2Fkenya%2FPHOTO-2024-01-24-22-06-59%203.jpg?alt=media&token=4414c19e-2f6f-4f11-80cb-bd4833936c18');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div
+          class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300"
+        ></div>
+        <div class="relative z-10 text-white px-4">
+          <h3 class="text-2xl font-semibold mb-1">Building Safe Spaces</h3>
+          <p class="text-md">
+            We’ve built homes, classrooms, temples, and restrooms to support
+            families in Kenya, Cuba and the Dominican Republic.
+          </p>
+        </div>
+      </div>
+
+      <!-- Medicine & Health Support Project -->
+      <div
+        class="relative rounded-xl overflow-hidden shadow-lg h-48 group flex items-center justify-center text-center"
+        style="
+          background-image: url('https://d337lrhmtj9qpq.cloudfront.net/gallery/IMG_0208.webp');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div
+          class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition duration-300"
+        ></div>
+        <div class="relative z-10 text-white px-4">
+          <h3 class="text-2xl font-semibold mb-1">Care for the Sick</h3>
+          <p class="text-md">
+            We provide medicine and compassion to those suffering without access
+            to proper healthcare.
+          </p>
         </div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
+<section>
+  <!-- Mission Highlights -->
+  <div class="py-20 px-6 md:px-12 max-w-7xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-12">What We Do</h2>
+    <div class="grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">home</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Shelter</h3>
+        <p class="text-gray-600">
+          Providing safe homes and refuge for families in need.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">restaurant</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Food</h3>
+        <p class="text-gray-600">
+          Delivering meals to communities suffering from hunger.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">school</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Education</h3>
+        <p class="text-gray-600">
+          Empowering youth through learning and opportunity.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">favorite</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Faith & Love</h3>
+        <p class="text-gray-600">
+          Spreading God's love through missions and outreach.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">opacity</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Clean Water</h3>
+        <p class="text-gray-600">
+          Bringing access to safe, clean drinking water in rural areas.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">healing</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Medicine</h3>
+        <p class="text-gray-600">
+          Offering care and medical support to the sick and vulnerable.
+        </p>
+      </div>
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">eco</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Crops</h3>
+        <p class="text-gray-600">
+          Supporting local farming and planting to sustain communities.
+        </p>
+      </div>
+      <!-- New: Clothing -->
+      <div>
+        <div class="text-blue-700 text-5xl mb-4">
+          <i class="material-icons">checkroom</i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Clothing</h3>
+        <p class="text-gray-600">
+          Providing clothes for children and families in need.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Grid -->
+
+<section class="py-20 px-6 md:px-12 bg-[#f9fafb] text-center">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+      Our Mission in Action
+    </h2>
+    <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
+      A glimpse into the lives we're impacting through shelter, food, education,
+      and faith.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="relative overflow-hidden rounded-xl shadow group">
+        <img
+          src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-one.webp"
+          alt="Project 1"
+          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div
+          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+        >
+          <p class="text-white text-lg font-semibold">Clean Water Project</p>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-xl shadow group">
+        <img
+          src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-two.webp"
+          alt="Project 2"
+          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div
+          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+        >
+          <p class="text-white text-lg font-semibold">Emergency Relief</p>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-xl shadow group">
+        <img
+          src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-three.webp"
+          alt="Project 3"
+          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        <div
+          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+        >
+          <p class="text-white text-lg font-semibold">Mobile Clinics</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mt-12">
+      <a
+        href="/our-work"
+        class="inline-block TitiliumWeb bg-blue-700 text-white px-6 py-3 rounded-xl font-normal hover:bg-blue-900 transition"
+      >
+        View Full Gallery
+      </a>
+    </div>
+  </div>
+</section>
+<section>
+  <!-- Call to Action -->
+  <div id="donate" class="py-16 bg-[#013399] text-white text-center px-6">
+    <h2 class="text-3xl font-bold mb-4">Ready to Make a Difference?</h2>
+    <p class="mb-6 text-lg">
+      Your donation provides food, shelter, and hope around the world.
+    </p>
+    <a
+      href="/donate"
+      class="bg-white text-blue-900 px-6 py-3 rounded-xl font-normal TitiliumWeb hover:opacity-90 transition"
+      >Donate Today</a
+    >
+  </div>
+</section>

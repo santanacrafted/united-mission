@@ -1,33 +1,25 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SlideItems } from '../../shared/components/swiper/swiper.component';
-import { VideoEmbedComponent } from '../../shared/components/video-embed/video-embed.component';
-import { ButtonComponent } from '../../shared/components/button/button.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { SwiperComponent } from '../../shared/components/swiper/swiper.component';
-import { VideoCheckerComponent } from '../../shared/components/video-checker/video-checker.component';
 import { PopupTemplateRegistryService } from '../../shared/services/popup-template-registry.service';
 import { PopupService } from '../../shared/services/popup/popup.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { httpsCallable } from 'firebase/functions';
 import { Functions } from '@angular/fire/functions';
 import { SnackbarService } from '../../shared/services/snackbar.service';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    CommonModule,
-    VideoEmbedComponent,
-    ButtonComponent,
-    TranslateModule,
-    SwiperComponent,
-    VideoCheckerComponent,
-  ],
+  imports: [CommonModule, HeaderComponent, TranslateModule, RouterLink],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
   prayerForm: FormGroup;
+  logoUrl = '/assets/images/logo-white2.png';
   backgroundImg: string =
     '/assets/images/curvy-blue-wave-lines-background-presentation-backdrop.jpg';
   churchServices: { day: string; time: string; description: string }[] = [

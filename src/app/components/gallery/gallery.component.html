@@ -1,64 +1,94 @@
-<section *ngIf="galleryView === 'events-gallery'" class="sm:py-16 py-8 px-6 md:px-12">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl font-bold text-[#005480] mb-10 text-center">
-      {{'GALLERY_PAGE_HEADER' | translate}}
-    </h2>
+<app-header
+  class="z-10"
+  [layout]="'horizontal'"
+  [drawerBtnPosition]="'left'"
+  [drawerSide]="'left'"
+  [siteTitle]="''"
+  [logoUrl]="logoUrl"
+  [logoPosition]="'left'"
+  [logoHeight]="80"
+  [logoWidth]="140"
+  [logoStyles]="'h-13 absolute'"
+  [headerBorderBottom]="true"
+  [headerBoxShadow]="'medium'"
+  [showCTAButton]="true"
+  [ctaButtonLabel]="'Make An Impact'"
+  [ctaButtonStyles]="
+    'block bg-[#228B22] text-white text-center py-2 rounded-xl font-normal'
+  "
+></app-header>
+<!-- EVENTS LIST VIEW -->
+<section
+  *ngIf="galleryView === 'events-gallery'"
+  class="sm:py-20 py-12 px-6 md:px-12 bg-white"
+>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-bold text-[#003d2e] mb-4">
+        {{ "GALLERY_PAGE_HEADER" | translate }}
+      </h2>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
       <ng-container *ngFor="let event of events$ | async">
-        <div (click)="loadEventImages(event)" class="bg-white rounded-2xl shadow-lg overflow-hidden transition transform hover:scale-[1.02] hover:shadow-xl duration-300 cursor-pointer">
-          <app-info-card [image]="event.coverImage" [title]="event.title[lang] | translate" class="w-full h-full rounded-2xl overflow-hidden flex content-center justify-center"
-          [description]="event.description[lang] | translate"
+        <div
+          (click)="loadEventImages(event)"
+          class="relative bg-white rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 hover:scale-[1.03] hover:shadow-2xl cursor-pointer group"
+        >
+          <app-info-card
+            [image]="event.coverImage"
+            [title]="event.name[lang] | translate"
+            [description]="event.description[lang] | translate"
+            class="w-full h-full rounded-2xl overflow-hidden"
           ></app-info-card>
         </div>
       </ng-container>
     </div>
-  </div>
-  <div *ngIf="selectGalleryLoading$ | async" class="dot-loader">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+
+    <div *ngIf="selectGalleryLoading$ | async" class="dot-loader mt-10">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
   </div>
 </section>
-<section *ngIf="galleryView === 'event-images' && selectedEvent" class="sm:py-16 py-8 px-6 md:px-12">
-  <div class="max-w-6xl mx-auto relative">
 
-    <div>
-    <!-- Back button for mobile (visible on xs only) -->
-    <div class="block sm:hidden text-center mb-6">
+<!-- EVENT IMAGES VIEW -->
+<section
+  *ngIf="galleryView === 'event-images' && selectedEvent"
+  class="sm:py-20 py-12 px-6 md:px-12 bg-white"
+>
+  <div class="max-w-7xl mx-auto relative">
+    <!-- Back buttons -->
+    <div class="mb-8 flex justify-between items-center">
       <button
         (click)="galleryView = 'events-gallery'"
-        class="text-sm text-[#005480] border border-[#005480] px-4 py-1.5 rounded-full hover:bg-[#005480] hover:text-white transition"
+        class="text-sm text-[#005480] border border-[#005480] px-4 py-2 rounded-full hover:bg-[#005480] hover:text-white transition"
       >
-        ← Back to Events
+        ← {{ "BACK_TO_EVENTS" | translate }}
       </button>
     </div>
 
-    <!-- Back button for desktop (hidden on mobile) -->
-    <button
-      (click)="galleryView = 'events-gallery'"
-      class="hidden sm:block top-0 right-0 mt-2 mr-2 text-sm text-[#005480] border border-[#005480] px-3 py-1 rounded-full hover:bg-[#005480] hover:text-white transition"
-    >
-      ← Back to Events
-    </button>
-
-    <!-- Title -->
-    <h2 class="text-3xl md:text-4xl font-bold text-[#005480] text-center mb-4">
-      {{ selectedEvent.title[lang] | translate }}
-    </h2>
-
-    <!-- Description -->
-    <p *ngIf="selectedEvent?.description" class="text-lg text-gray-700 text-center mb-10">
-      {{ selectedEvent.description[lang] | translate }}
-    </p>
+    <!-- Title & Description -->
+    <div class="text-center mb-10">
+      <h2 class="text-4xl font-bold text-[#005480] mb-2">
+        {{ selectedEvent.name[lang] | translate }}
+      </h2>
+      <p
+        *ngIf="selectedEvent?.description"
+        class="text-lg text-gray-600 max-w-2xl mx-auto"
+      >
+        {{ selectedEvent.description[lang] | translate }}
+      </p>
     </div>
 
-    <!-- Image Grid -->
+    <!-- Images Grid -->
     <ng-container *ngIf="images$ | async as images">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div
           *ngFor="let image of images"
-          class="overflow-hidden rounded-xl shadow transition transform hover:scale-[1.02] hover:shadow-xl duration-300  cursor-pointer" (click)="openImage(image, images)"
+          (click)="openImage(image, images)"
+          class="overflow-hidden rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
         >
           <img
             [src]="image"
@@ -68,16 +98,11 @@
         </div>
       </div>
     </ng-container>
-    
-  </div>
-  <div *ngIf="selectGalleryLoading$ | async" class="dot-loader">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
+
+    <div *ngIf="selectGalleryLoading$ | async" class="dot-loader mt-10">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
   </div>
 </section>
-
-
-
-
-

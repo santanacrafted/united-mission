@@ -5,8 +5,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormGroup } from '@angular/forms';
 import { httpsCallable } from '@angular/fire/functions';
 import { Functions } from '@angular/fire/functions';
-import { ButtonComponent } from '../../shared/components/button/button.component';
 import { SnackbarService } from '../../shared/services/snackbar.service';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-contact',
@@ -15,11 +15,13 @@ import { SnackbarService } from '../../shared/services/snackbar.service';
     CommonModule,
     ReactiveFormsModule,
     TranslateModule,
-    ButtonComponent,
+    HeaderComponent,
   ],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
+  logoUrl: string = '/assets/images/logo.png';
+
   fb = inject(FormBuilder);
   translate = inject(TranslateService);
   functions = inject(Functions);

@@ -25,8 +25,8 @@ export const sendContactEmail = onCall(
 
     const mailOptions = {
       from: `"${name}" <${email}>`,
-      to: gmailUser.value(),
-      subject: 'New Contact Form Submission',
+      to: 'dsantanam2@gmail.com',
+      subject: 'United Missions Contact Form',
       html: `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
