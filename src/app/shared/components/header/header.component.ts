@@ -48,18 +48,20 @@ import { TranslateService } from '@ngx-translate/core';
         class="max-w-[1800px] relative mx-auto w-full py-4"
         [ngClass]="[
           layout === 'horizontal'
-            ? 'flex items-center md:justify-between justify-start px-20'
+            ? 'flex items-center mdx:justify-between justify-center px-20'
             : 'flex flex-col items-center gap-4 px-4',
           logoPosition === 'center' ? 'grid !justify-center' : 'block'
         ]"
       >
         <!-- 🍔 Mobile Menu Icon -->
-        <div class="md:hidden absolute left-4 top-1/2 -translate-y-1/2">
+        <div class="mdx:hidden absolute left-4 top-1/2 -translate-y-1/2">
           <button
             (click)="toggleMobileMenu()"
             class="flex items-center TitiliumWeb"
           >
-            <i class="material-icons text-2xl">menu</i>
+            <i [ngClass]="drawerStyling" class="material-icons text-2xl"
+              >menu</i
+            >
           </button>
         </div>
 
@@ -67,7 +69,7 @@ import { TranslateService } from '@ngx-translate/core';
         <a
           [style.height.px]="logoHeight"
           [style.width.px]="logoWidth"
-          class="flex items-center gap-2 cursor-pointer w-full md:w-auto md:justify-start"
+          class="flex items-center gap-2 cursor-pointer w-full mdx:w-auto mdx:justify-start justify-center"
           [ngClass]="
             [
               logoPosition === 'right'
@@ -96,12 +98,12 @@ import { TranslateService } from '@ngx-translate/core';
         </a>
 
         <!-- 🧭 Desktop Navigation -->
-        <div class="hidden md:block">
+        <div class="hidden mdx:block">
           <app-navigation></app-navigation>
         </div>
 
         <!-- 📢 CTA Button -->
-        <div *ngIf="showCTAButton" class="hidden md:block">
+        <div *ngIf="showCTAButton" class="hidden lg:block">
           <a
             [routerLink]="'/donate'"
             [ngClass]="ctaButtonStyles"
@@ -168,6 +170,7 @@ export class HeaderComponent {
   @Input() ctaButtonStyles: string = 'bg-[#3B82F6] text-[#fff]';
 
   @Input() drawerSide: 'left' | 'right' = 'left';
+  @Input() drawerStyling: string = '';
   @Input() drawerBtnPosition: 'left' | 'right' = 'left';
 
   showLangDropdown: boolean = false;

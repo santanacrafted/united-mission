@@ -13,6 +13,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        mdx: '900px', // custom 900px breakpoint
+      },
       height: {
         'full-plus-120': 'calc(100% + 120px)',
       },

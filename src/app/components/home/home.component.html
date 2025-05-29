@@ -15,6 +15,7 @@
   [showCTAButton]="true"
   [ctaButtonLabel]="'Make An Impact'"
   [headerBackgroundColor]="'transparent'"
+  [drawerStyling]="'text-white'"
   [ctaButtonStyles]="
     'bg-transparent text-white border border-white px-4 py-2 rounded-xl hover:bg-white hover:text-black transition transform hover:scale-105'
   "
@@ -229,36 +230,44 @@
         <img
           src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-one.webp"
           alt="Project 1"
-          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+          class="w-full h-40 sm:h-64 object-cover transform sm:group-hover:scale-110 transition duration-500"
         />
         <div
-          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+          class="absolute inset-0 bg-black bg-opacity-50 sm:opacity-0 sm:group-hover:opacity-100 transition flex items-center justify-center"
         >
-          <p class="text-white text-lg font-semibold">Clean Water Project</p>
+          <p class="text-white text-base sm:text-lg font-semibold">
+            Clean Water Project
+          </p>
         </div>
       </div>
+
       <div class="relative overflow-hidden rounded-xl shadow group">
         <img
           src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-two.webp"
           alt="Project 2"
-          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+          class="w-full h-40 sm:h-64 object-cover transform sm:group-hover:scale-110 transition duration-500"
         />
         <div
-          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+          class="absolute inset-0 bg-black bg-opacity-50 sm:opacity-0 sm:group-hover:opacity-100 transition flex items-center justify-center"
         >
-          <p class="text-white text-lg font-semibold">Emergency Relief</p>
+          <p class="text-white text-base sm:text-lg font-semibold">
+            Emergency Relief
+          </p>
         </div>
       </div>
+
       <div class="relative overflow-hidden rounded-xl shadow group">
         <img
           src="https://d337lrhmtj9qpq.cloudfront.net/carosel/carosel-photo-three.webp"
           alt="Project 3"
-          class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500"
+          class="w-full h-40 sm:h-64 object-cover transform sm:group-hover:scale-110 transition duration-500"
         />
         <div
-          class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center"
+          class="absolute inset-0 bg-black bg-opacity-50 sm:opacity-0 sm:group-hover:opacity-100 transition flex items-center justify-center"
         >
-          <p class="text-white text-lg font-semibold">Mobile Clinics</p>
+          <p class="text-white text-base sm:text-lg font-semibold">
+            Mobile Clinics
+          </p>
         </div>
       </div>
     </div>

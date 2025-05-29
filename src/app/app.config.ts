@@ -13,7 +13,11 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { loadTranslations } from './translation.loader';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import {
+  provideFirebaseApp,
+  initializeApp,
+  FirebaseOptions,
+} from '@angular/fire/app';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import {
   provideFirestore,
@@ -37,13 +41,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-export const appConfig: ApplicationConfig = {
+export const appConfig = (
+  firebaseConfig: FirebaseOptions
+): ApplicationConfig => ({
   providers: [
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFunctions(() => getFunctions(undefined, 'us-central1')),
     provideStorage(() => getStorage()),
     provideFirestore(() =>
-      initializeFirestore(initializeApp(environment.firebase), {
+      initializeFirestore(initializeApp(firebaseConfig), {
         ignoreUndefinedProperties: true,
         experimentalForceLongPolling: true,
         localCache: persistentLocalCache(),
@@ -77,4 +83,4 @@ export const appConfig: ApplicationConfig = {
     provideEffects([GalleryEffects, MinistriesEffects, VideosEffects]),
     provideStoreDevtools({}),
   ],
-};
+});
