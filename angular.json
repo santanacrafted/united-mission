@@ -30,6 +30,11 @@
                 "glob": "**/*",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": "runtime-environment.json",
+                "input": "src/",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -91,6 +96,11 @@
                 "glob": "**/*",
                 "input": "public",
                 "output": "/"
+              },
+              {
+                "glob": "runtime-environment.json",
+                "input": "src/",
+                "output": "/assets/"
               }
             ],
             "styles": [
