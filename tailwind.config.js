@@ -20,8 +20,8 @@ module.exports = {
         'full-plus-120': 'calc(100% + 120px)',
       },
       fontFamily: {
-        AdventPro: ['"AdventPro"', 'TitiliumWeb', 'sans-serif'],
-        TitiliumWeb: ['"TitiliumWeb"', 'AdventPro', 'sans-serif'],
+        TitilliumWeb: ['"TitilliumWeb"', 'sans-serif'],
+        AdventPro: ['"AdventPro"', 'sans-serif'],
       },
       keyframes: {
         'fade-in-up': {

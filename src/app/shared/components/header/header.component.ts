@@ -39,7 +39,7 @@ import { TranslateService } from '@ngx-translate/core';
         [style.backgroundColor]="topInfoBarColor"
         class="w-full transition-[height] duration-300 ease-in-out justify-center flex overflow-hidden"
       >
-        <a class="flex TitiliumWeb h-6 w-fit relative top-2 font-bold">{{
+        <a class="flex TitilliumWeb h-6 w-fit relative top-2 font-bold">{{
           topInfoBar
         }}</a>
       </div>
@@ -57,7 +57,7 @@ import { TranslateService } from '@ngx-translate/core';
         <div class="mdx:hidden absolute left-4 top-1/2 -translate-y-1/2">
           <button
             (click)="toggleMobileMenu()"
-            class="flex items-center TitiliumWeb"
+            class="flex items-center TitilliumWeb"
           >
             <i [ngClass]="drawerStyling" class="material-icons text-2xl"
               >menu</i
@@ -124,7 +124,7 @@ import { TranslateService } from '@ngx-translate/core';
         [ngClass]="drawerSide === 'right' ? 'right-0' : 'left-0'"
       >
         <div class="flex justify-end">
-          <button (click)="toggleMobileMenu()" class="TitiliumWeb">
+          <button (click)="toggleMobileMenu()" class="TitilliumWeb">
             <i class="material-icons text-white">close</i>
           </button>
         </div>

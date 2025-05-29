@@ -7,40 +7,33 @@
 
   @font-face {
     font-family: 'AdventPro';
-    src: url('/assets/fonts/advent-pro/AdventPro_SemiExpanded-Thin.ttf') format('truetype');
-    font-weight: 300;
+    src: url('assets/fonts/advent-pro/AdventProSemiExpanded-Thin.woff2') format('woff2'),
+    url('assets/fonts/advent-pro/AdventProSemiExpanded-Thin.woff') format('woff');
+    font-weight: 100;
     font-style: normal;
   }
 
   @font-face {
     font-family: 'AdventPro';
-    src: url('/assets/fonts/advent-pro/AdventPro_Regular.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'AdventPro';
-    src: url('/assets/fonts/advent-pro/AdventPro-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'AdventPro';
-    src: url('/assets/fonts/titilium-web/TitiliumWeb-Regular.woff2') format('woff2'),
-         url('/assets/fonts/titilium-web/TitiliumWeb-Regular.woff') format('woff'),
-         url('/assets/fonts/titilium-web/TitiliumWeb-Regular.ttf') format('truetype');
-    font-weight: 600;
+    src: url('assets/fonts/advent-pro/AdventPro-Regular.woff2') format('woff2'),
+    url('assets/fonts/advent-pro/AdventPro-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
   }
 
   @font-face {
-    font-family: 'AdventPro';
-    src: url('/assets/fonts/titilium-web/TitiliumWeb-Bold.woff2') format('woff2'),
-         url('/assets/fonts/titilium-web/TitiliumWeb-Bold.woff') format('woff'),
-         url('/assets/fonts/titilium-web/TitiliumWeb-Bold.ttf') format('truetype');
-    font-weight: 600;
+    font-family: 'TitilliumWeb';
+    src: url('assets/fonts/titilium-web/TitilliumWeb-Regular.woff2') format('woff2'),
+         url('assets/fonts/titilium-web/TitilliumWeb-Regular.woff') format('woff');
+    font-weight: 500; // ✅ correct weight for Regular
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'TitilliumWeb';
+    src: url('assets/fonts/titilium-web/TitilliumWeb-Bold.woff2') format('woff2'),
+         url('assets/fonts/titilium-web/TitilliumWeb-Bold.woff') format('woff');
+    font-weight: 700; // ✅ correct weight for Bold
     font-style: normal;
   }
   
@@ -54,7 +47,11 @@ html, body {
   position: relative;
 }
 
-body { margin: 0; font-family: 'AdventPro', 'TitiliumWeb', Roboto, "Helvetica Neue", sans-serif;  }
+body { margin: 0; font-family: 'TitilliumWeb', 'TitilliumWeb', Roboto, "Helvetica Neue", sans-serif;  }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'AdventPro', 'TitilliumWeb', Roboto, "Helvetica Neue", sans-serif;
+}
 
 .mat-mdc-dialog-container .mat-mdc-dialog-surface {
   // border-radius: 0 !important;

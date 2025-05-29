@@ -31,7 +31,7 @@ export interface FooterSection {
       >
         <div *ngFor="let section of sections">
           <h3
-            class="font-bold mb-4 TitiliumWeb"
+            class="font-bold mb-4 TitilliumWeb"
             [style.fontSize]="headingFontSize"
           >
             {{ section.title | translate }}
@@ -42,7 +42,7 @@ export interface FooterSection {
                 *ngIf="!link.external"
                 [routerLink]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
-                class="hover:!text-[#228B22] transition duration-200 cursor-pointer TitiliumWeb font-normal"
+                class="hover:!text-[#228B22] transition duration-200 cursor-pointer TitilliumWeb font-normal"
                 [style.color]="linkColor"
                 [style.fontSize]="linkFontSize"
               >
@@ -52,7 +52,7 @@ export interface FooterSection {
                 *ngIf="link.external"
                 [href]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
-                class="hover:!text-[#228B22] transition duration-200 cursor-pointer TitiliumWeb font-normal"
+                class="hover:!text-[#228B22] transition duration-200 cursor-pointer TitilliumWeb font-normal"
                 [style.color]="linkColor"
                 [style.fontSize]="linkFontSize"
               >
