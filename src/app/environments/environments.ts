@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCWGoKUP_6SXY7Z5ImZM6GuvosgPyBDROY',
-    authDomain: 'united-mission.firebaseapp.com',
-    projectId: 'united-mission',
-    storageBucket: 'united-mission.firebasestorage.app',
-    messagingSenderId: '295713502019',
-    appId: '1:295713502019:web:3a2f61709a269fc628b5f6',
-    measurementId: 'G-FKWQ7WFD2R',
+    apiKey: (window as any)['__env']?.FIREBASE_API_KEY,
+    authDomain: (window as any)['__env']?.FIREBASE_AUTH_DOMAIN,
+    projectId: (window as any)['__env']?.FIREBASE_PROJECT_ID,
+    storageBucket: (window as any)['__env']?.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: (window as any)['__env']?.FIREBASE_MESSAGING_SENDER_ID,
+    appId: (window as any)['__env']?.FIREBASE_APP_ID,
+    measurementId: (window as any)['__env']?.FIREBASE_MEASUREMENT_ID,
   },
 };

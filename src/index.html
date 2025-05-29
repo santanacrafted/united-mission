@@ -19,11 +19,9 @@
     <script>
       window["__env"] = {};
       fetch("/assets/runtime-environment.json")
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((env) => (window["__env"] = env))
-        .catch(() =>
-          console.error("Failed to load runtime environment config.")
-        );
+        .catch(() => console.error("Could not load runtime environment"));
     </script>
   </head>
 
