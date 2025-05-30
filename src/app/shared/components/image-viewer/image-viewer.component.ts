@@ -1,12 +1,11 @@
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { SwiperComponent } from '../swiper/swiper.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-image-viewer',
-  imports: [SwiperComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './image-viewer.component.html',
   styleUrls: ['./image-viewer.component.scss'],
   animations: [

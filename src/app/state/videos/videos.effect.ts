@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MinistriesService } from '../../components/ministries/ministries.service';
 import {
   loadYouTubePlayListVideos,
   loadYouTubePlayListVideosSuccess,

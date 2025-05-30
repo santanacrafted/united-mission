@@ -15,7 +15,7 @@
   [ctaButtonLabel]="'Make An Impact'"
   [drawerStyling]="'text-black'"
   [ctaButtonStyles]="
-    'block bg-[#228B22] text-white text-center py-2 rounded-xl font-normal'
+    'block border border-[#228B22] text-[#228B22] hover:bg-[#228B22] hover:text-white transition transform hover:scale-105 text-center py-2 rounded-xl font-normal'
   "
 ></app-header>
 <section class="bg-white text-[#003d2e]">
@@ -183,7 +183,7 @@
         one act of love at a time.
       </p>
       <a
-        routerLink="donate"
+        [routerLink]="'/donate'"
         class="inline-block bg-white text-blue-900 px-8 py-3 rounded-xl font-normal hover:opacity-90 transition"
       >
         Donate Now

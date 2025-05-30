@@ -7,7 +7,6 @@ import {
   FooterComponent,
   FooterSection,
 } from './shared/components/footer/footer.component';
-import { HeaderComponent } from './shared/components/header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 
@@ -20,7 +19,6 @@ import { filter } from 'rxjs';
     FormsModule,
     CommonModule,
     FooterComponent,
-    HeaderComponent,
     TranslateModule,
   ],
   templateUrl: './app.component.html',
@@ -43,13 +41,21 @@ export class AppComponent {
     {
       title: 'FOOTER_SOCIAL_MEDIA_HEADER',
       links: [
-        { label: 'FOOTER_SOCIAL_MEDIA_LINK_1' },
         {
-          label: 'FOOTER_SOCIAL_MEDIA_LINK_2',
-          path: 'https://www.youtube.com/@SantanaCrafted',
+          label: 'FOOTER_SOCIAL_MEDIA_LINK_1',
+          path: 'https://www.facebook.com/search/top?q=united%20mission%20international',
           external: true,
         },
-        { label: 'FOOTER_SOCIAL_MEDIA_LINK_3' },
+        {
+          label: 'FOOTER_SOCIAL_MEDIA_LINK_2',
+          path: 'https://twitter.com/united_int',
+          external: true,
+        },
+        {
+          label: 'FOOTER_SOCIAL_MEDIA_LINK_3',
+          path: 'https://www.instagram.com/united_mission_int/',
+          external: true,
+        },
       ],
     },
     {
