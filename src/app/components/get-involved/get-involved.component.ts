@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-get-involved',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, RouterLink],
   templateUrl: './get-involved.component.html',
   styleUrl: './get-involved.component.scss',
 })

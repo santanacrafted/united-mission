@@ -50,7 +50,7 @@ export interface FooterSection {
               </a>
               <a
                 *ngIf="link.external"
-                [href]="link.path"
+                [routerLink]="link.path"
                 [target]="link.external ? '_blank' : '_self'"
                 class="hover:!text-[#228B22] transition duration-200 cursor-pointer TitilliumWeb font-normal"
                 [style.color]="linkColor"
