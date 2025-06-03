@@ -67,6 +67,7 @@ export class AppComponent {
     },
   ];
   isMobileMenuOpen = false;
+  showFooterAndHeader = true;
 
   constructor(
     private translate: TranslateService,
@@ -83,8 +84,9 @@ export class AppComponent {
     this.translate.use(defaultLang);
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe(() => {
+      .subscribe((event: NavigationEnd) => {
         this.viewportScroller.scrollToPosition([0, 0]);
+        this.showFooterAndHeader = !event.urlAfterRedirects.includes('/admin');
       });
   }
 

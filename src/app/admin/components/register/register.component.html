@@ -1,0 +1,162 @@
+<section
+  class="min-h-screen w-full flex items-center justify-center bg-[#fefcf8] px-6"
+>
+  <div
+    class="w-full max-w-md bg-white shadow-lg rounded-xl p-8 border border-gray-200"
+  >
+    <div *ngIf="!registrationPending">
+      <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-[#003d2e]">Create Account</h1>
+        <p class="text-sm text-gray-500 mt-2">
+          Register to access the dashboard
+        </p>
+      </div>
+
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-6"
+      >
+        <!-- Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Full Name"
+            class="mt-1 w-full border-b border-gray-300 focus:outline-none focus:border-[#003d2e] py-2"
+          />
+          <div
+            *ngIf="
+              registerForm.get('name')?.invalid &&
+              registerForm.get('name')?.touched
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            Name is required.
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="you@example.com"
+            class="mt-1 w-full border-b border-gray-300 focus:outline-none focus:border-[#003d2e] py-2"
+          />
+          <div
+            *ngIf="
+              registerForm.get('email')?.invalid &&
+              registerForm.get('email')?.touched
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            Please enter a valid email.
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Password</label
+          >
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="••••••••"
+            class="mt-1 w-full border-b border-gray-300 focus:outline-none focus:border-[#003d2e] py-2"
+          />
+          <div
+            *ngIf="
+              registerForm.get('password')?.invalid &&
+              registerForm.get('password')?.touched
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            Password must be at least 6 characters.
+          </div>
+        </div>
+
+        <!-- Role -->
+        <!-- Replace the Role section inside your form with this: -->
+
+        <!-- Roles -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1"
+            >Roles</label
+          >
+          <div
+            formArrayName="roles"
+            class="flex flex-wrap gap-4 border-b border-gray-300 pb-2"
+          >
+            <label
+              *ngFor="let role of availableRoles; let i = index"
+              class="flex items-center gap-2 text-sm text-gray-700"
+            >
+              <input
+                type="checkbox"
+                [formControlName]="i"
+                class="accent-[#003d2e]"
+              />
+              {{ role.label }}
+            </label>
+          </div>
+          <div
+            *ngIf="
+              registerForm.get('roles')?.invalid &&
+              registerForm.get('roles')?.touched
+            "
+            class="text-sm text-red-500 mt-1"
+          >
+            Please select at least one role.
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-[#003d2e] hover:bg-[#001f18] text-white font-semibold py-2 rounded-md transition"
+            [disabled]="registerForm.invalid"
+          >
+            Register
+          </button>
+        </div>
+        <!-- Link to login -->
+        <div class="text-center mt-4">
+          <p class="text-sm text-gray-500">
+            Already have an account?
+            <a
+              routerLink="/admin/login"
+              class="text-[#005480] hover:underline font-medium"
+            >
+              Sign in here
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Show pending message -->
+    <div *ngIf="registrationPending" class="text-center space-y-4">
+      <p class="text-green-700 font-medium">
+        ✅ Your registration has been submitted.
+      </p>
+      <p class="text-sm text-gray-600">
+        Please wait for an administrator to approve your account. You'll receive
+        an email once your access is granted.
+      </p>
+      <a
+        routerLink="/admin/login"
+        class="inline-block text-[#005480] hover:underline text-sm font-medium mt-4"
+      >
+        Return to login
+      </a>
+    </div>
+    <p class="text-xs text-center text-gray-400 mt-6">
+      &copy; 2025 SantanaCrafted. Await admin approval after registration.
+    </p>
+  </div>
+</section>

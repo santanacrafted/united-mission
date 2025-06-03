@@ -7,12 +7,16 @@ export interface GalleryState {
   eventImages: {
     [eventId: string]: string[];
   };
+  selectedImages: {
+    [eventId: string]: string[];
+  };
   loading: boolean;
 }
 
 export const initialState: GalleryState = {
   events: [],
   eventImages: {},
+  selectedImages: {},
   loading: false,
 };
 
@@ -46,5 +50,116 @@ export const galleryReducer = createReducer(
       [eventId]: images,
     },
     loading: false,
-  }))
+  })),
+  on(GalleryActions.selectAllImages, (state, { eventId, images }) => ({
+    ...state,
+    selectedImages: {
+      ...state.selectedImages,
+      [eventId]: [...images],
+    },
+  })),
+
+  on(GalleryActions.clearSelectedImages, (state, { eventId }) => ({
+    ...state,
+    selectedImages: {
+      ...state.selectedImages,
+      [eventId]: [],
+    },
+  })),
+  on(GalleryActions.toggleSelectImage, (state, { eventId, imageUrl }) => {
+    const currentSelected = state.selectedImages[eventId] || [];
+    const alreadySelected = currentSelected.includes(imageUrl);
+
+    return {
+      ...state,
+      selectedImages: {
+        ...state.selectedImages,
+        [eventId]: alreadySelected
+          ? currentSelected.filter((img) => img !== imageUrl)
+          : [...currentSelected, imageUrl],
+      },
+    };
+  }),
+
+  on(GalleryActions.deleteSelectedImages, (state, { eventId }) => {
+    const selectedToDelete = state.selectedImages[eventId] || [];
+    const remainingImages = (state.eventImages[eventId] || []).filter(
+      (img) => !selectedToDelete.includes(img)
+    );
+
+    return {
+      ...state,
+      eventImages: {
+        ...state.eventImages,
+        [eventId]: remainingImages,
+      },
+      selectedImages: {
+        ...state.selectedImages,
+        [eventId]: [],
+      },
+    };
+  }),
+  on(
+    GalleryActions.addImagesToAlbumSuccess,
+    (state, { eventId, imageUrls }) => ({
+      ...state,
+      eventImages: {
+        ...state.eventImages,
+        [eventId]: [...(state.eventImages[eventId] || []), ...imageUrls],
+      },
+    })
+  ),
+
+  on(
+    GalleryActions.updateAlbumSuccess,
+    (state, { albumId, updatedFields }) => ({
+      ...state,
+      events: state.events.map((album) =>
+        album.id === albumId
+          ? {
+              ...album,
+              ...updatedFields,
+            }
+          : album
+      ),
+    })
+  ),
+
+  on(GalleryActions.updateAlbumSuccess, (state, { albumId, updatedFields }) => {
+    console.log(updatedFields);
+    return {
+      ...state,
+      events: state.events.map((album) =>
+        album.id === albumId
+          ? {
+              ...album,
+              ...updatedFields,
+            }
+          : album
+      ),
+    };
+  }),
+  on(GalleryActions.createAlbumSuccess, (state, { album }) => ({
+    ...state,
+    events: [...state.events, album],
+    loading: false,
+  })),
+
+  on(GalleryActions.createAlbumFailure, (state) => ({
+    ...state,
+    loading: false,
+  })),
+  on(GalleryActions.deleteAlbumSuccess, (state, { albumId }) => {
+    const { [albumId]: removedImages, ...remainingEventImages } =
+      state.eventImages;
+    const { [albumId]: removedSelected, ...remainingSelectedImages } =
+      state.selectedImages;
+
+    return {
+      ...state,
+      events: state.events.filter((event) => event.id !== albumId),
+      eventImages: remainingEventImages,
+      selectedImages: remainingSelectedImages,
+    };
+  })
 );

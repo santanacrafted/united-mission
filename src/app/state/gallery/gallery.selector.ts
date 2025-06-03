@@ -38,3 +38,9 @@ export const selectEventImages = (eventId: string) =>
     selectGalleryState,
     (state) => state.eventImages[eventId] || []
   );
+
+export const selectSelectedImagesByAlbum = (eventId: string) =>
+  createSelector(
+    selectGalleryState,
+    (state) => state.selectedImages[eventId] || []
+  );

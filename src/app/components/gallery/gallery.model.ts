@@ -3,6 +3,8 @@ export interface GalleryEvent {
   name: { en: string; es: string };
   description: { en: string; es: string };
   coverImage: string;
+  totalItems?: number;
+  createdAt: any;
 }
 
 export interface GalleryImage {

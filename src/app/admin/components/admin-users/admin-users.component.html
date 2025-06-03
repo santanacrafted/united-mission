@@ -1,0 +1,128 @@
+<section class="max-w-4xl mx-auto">
+  <h1 class="text-2xl font-bold mb-6 text-[#003d2e]">User Management</h1>
+
+  <!-- Tabs -->
+  <div class="flex gap-4 border-b border-gray-200 mb-6">
+    <button
+      (click)="activeTab = 'pending'"
+      [ngClass]="{
+        'border-b-2 border-[#003d2e] font-semibold text-[#003d2e]':
+          activeTab === 'pending',
+        'text-gray-500': activeTab !== 'pending'
+      }"
+      class="py-2 px-4 transition"
+    >
+      Pending Users
+    </button>
+
+    <button
+      (click)="activeTab = 'approved'"
+      [ngClass]="{
+        'border-b-2 border-[#003d2e] font-semibold text-[#003d2e]':
+          activeTab === 'approved',
+        'text-gray-500': activeTab !== 'approved'
+      }"
+      class="py-2 px-4 transition"
+    >
+      Approved Users
+    </button>
+  </div>
+
+  <!-- Pending Users -->
+  <div *ngIf="activeTab === 'pending'">
+    <div *ngIf="(pendingUsers$ | async)?.length === 0" class="text-gray-500">
+      No pending users.
+    </div>
+
+    <div
+      *ngFor="let user of pendingUsers$ | async"
+      class="bg-white p-4 shadow rounded-lg mb-4"
+    >
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-semibold text-lg">
+            {{ user.displayName || "Unnamed" }}
+          </p>
+          <p class="text-sm text-gray-600">{{ user.email }}</p>
+          <p class="text-xs text-gray-400">Requested: {{ user.role }}</p>
+
+          <div class="mt-2">
+            <label *ngFor="let role of allRoles" class="mr-4">
+              <input
+                type="checkbox"
+                [checked]="(userRolesMap[user.email] || []).includes(role)"
+                (change)="toggleRole(user.email, role)"
+              />
+              {{ role }}
+            </label>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <button
+            (click)="
+              this.approve(user.email, this.userRolesMap[user.email] || [])
+            "
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded"
+          >
+            Approve
+          </button>
+          <button
+            (click)="reject(user.email)"
+            class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded"
+          >
+            Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Approved Users -->
+  <div *ngIf="activeTab === 'approved'">
+    <div *ngIf="(approvedUsers$ | async)?.length === 0" class="text-gray-500">
+      No approved users.
+    </div>
+
+    <div
+      *ngFor="let user of approvedUsers$ | async"
+      class="bg-white p-4 shadow rounded-lg mb-4"
+    >
+      <div class="flex justify-between items-start">
+        <div>
+          <p class="font-semibold text-lg">
+            {{ user.displayName || "Unnamed" }}
+          </p>
+          <p class="text-sm text-gray-600">{{ user.email }}</p>
+
+          <div class="mt-2">
+            <label *ngFor="let role of allRoles" class="mr-4">
+              <input
+                type="checkbox"
+                [checked]="(userRolesMap[user.email] || []).includes(role)"
+                (change)="toggleRole(user.email, role)"
+              />
+              {{ role }}
+            </label>
+          </div>
+
+          <div class="mt-2" *ngIf="rolesChanged(user.email)">
+            <button
+              (click)="saveRoles(user.email)"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
+            >
+              Save Roles
+            </button>
+          </div>
+        </div>
+
+        <button
+          (click)="deleteUser(user.email)"
+          class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded h-fit"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

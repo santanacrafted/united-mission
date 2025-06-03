@@ -1,0 +1,349 @@
+<section class="max-w-7xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-10 text-center">
+    <h1 class="text-4xl font-bold TitiliumWeb text-[#003d2e]">Gallery Admin</h1>
+    <p class="text-gray-600 max-w-xl mx-auto">
+      Create, manage, and showcase albums for your ministry in one place.
+    </p>
+  </div>
+
+  <!-- Button to Show Form -->
+  <div *ngIf="!selectedAlbum" class="mb-8 text-right">
+    <button
+      (click)="openAddAlbumPopup()"
+      class="bg-[#005480] hover:bg-[#007a6f] text-white px-6 py-2 rounded-lg font-medium transition"
+    >
+      <i class="material-icons align-middle mr-1">add_photo_alternate</i>
+      Add New Album
+    </button>
+  </div>
+
+  <!-- Back Button -->
+  <div *ngIf="selectedAlbum" class="mb-6 flex justify-between items-center">
+    <button
+      (click)="selectedAlbum = null"
+      class="text-[#005480] hover:underline font-medium"
+    >
+      ← Back to Albums
+    </button>
+
+    <div class="flex gap-4">
+      <!-- Upload Images Button -->
+      <label
+        for="file-upload"
+        class="inline-flex items-center px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg cursor-pointer transition duration-200"
+      >
+        <svg
+          class="w-5 h-5 mr-2"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v9m0 0l-3-3m3 3l3-3M12 3v9"
+          ></path>
+        </svg>
+        Upload Images
+        <input
+          id="file-upload"
+          type="file"
+          multiple
+          accept="image/*"
+          class="hidden"
+          (change)="onAddMoreImages($event)"
+        />
+      </label>
+
+      <button
+        *ngIf="(selectedImages$ | async)?.length"
+        (click)="onDeleteSelectedImages()"
+        class="text-sm text-red-600 underline font-medium"
+      >
+        Delete Selected
+      </button>
+    </div>
+  </div>
+
+  <!-- Album Image View -->
+  <ng-container *ngIf="images$ | async as images">
+    <ng-container *ngIf="selectedImages$ | async as selectedImages">
+      <div *ngIf="selectedAlbum" class="grid gap-4">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-2xl font-semibold TitiliumWeb text-[#003d2e]">
+            {{ selectedAlbum.name.en }}
+          </h2>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              [checked]="
+                selectedImages.length === images.length &&
+                !(selectGalleryLoading$ | async)
+              "
+              (change)="onSelectAll()"
+            />
+            <span class="text-sm text-gray-700">Select All</span>
+          </label>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div
+            *ngFor="let img of images"
+            class="relative overflow-hidden rounded-xl border border-gray-300 shadow-sm"
+          >
+            <img [src]="img" class="w-full h-48 object-cover" />
+            <input
+              type="checkbox"
+              class="absolute top-2 left-2 w-5 h-5"
+              [checked]="selectedImages.includes(img)"
+              (change)="onToggleSelectImage(img)"
+            />
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Existing Albums -->
+  <div *ngIf="!selectedAlbum">
+    <h2 class="text-2xl font-semibold TitiliumWeb text-[#003d2e] mb-4">
+      Your Albums
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let event of events$ | async"
+        class="relative rounded-2xl overflow-hidden bg-white/80 backdrop-blur-lg shadow-lg border border-gray-200"
+      >
+        <!-- Edit Icon Button -->
+        <button
+          (click)="onEditAlbum(event)"
+          class="absolute top-2 right-2 bg-white/80 hover:bg-white text-[#005480] p-1 rounded-full shadow transition"
+          title="Edit Album"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"
+            />
+          </svg>
+        </button>
+
+        <!-- Album Cover -->
+        <img [src]="event.coverImage" class="w-full h-48 object-cover" />
+
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-[#003d2e]">{{ event.name.en }}</h3>
+          <p class="text-sm text-gray-500 mb-3">20 images • Jan 2025</p>
+          <div class="flex justify-between items-center text-sm">
+            <button
+              (click)="loadEventImages(event)"
+              class="text-[#005480] hover:underline"
+            >
+              View
+            </button>
+            <button
+              (click)="onDeleteAlbum(event.id)"
+              class="text-red-500 hover:underline"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #editAlbumTemplate let-close="close" let-album="album">
+  <div
+    class="bg-white/60 backdrop-blur-lg shadow-xl w-[600px] rounded-2xl p-8 mb-12 border border-gray-200"
+  >
+    <!-- Close Button -->
+    <button
+      (click)="close()"
+      aria-label="Close"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold"
+    >
+      &times;
+    </button>
+
+    <h2 class="text-xl font-semibold mb-4 text-[#003d2e]">Edit Album</h2>
+
+    <form [formGroup]="editAlbumForm" (ngSubmit)="onUpdateAlbum(album.id)">
+      <!-- Cover Image -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          Cover Image
+        </label>
+        <div
+          class="relative w-full h-48 border border-gray-300 rounded-md overflow-hidden"
+        >
+          <img
+            [src]="previewUrl || album.coverImage"
+            alt="Cover"
+            class="w-full h-full object-cover"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onCoverImageSelected($event)"
+            class="absolute inset-0 opacity-0 cursor-pointer"
+          />
+        </div>
+      </div>
+
+      <!-- Language Toggle -->
+      <div class="flex gap-2 mb-4">
+        <button
+          *ngFor="let lang of supportedLanguages"
+          type="button"
+          (click)="setActiveLang(lang)"
+          [ngClass]="{
+            'bg-blue-600 text-white': activeLang === lang,
+            'bg-gray-200 text-gray-700': activeLang !== lang
+          }"
+          class="px-3 py-1 rounded-md text-sm"
+        >
+          {{ lang.toUpperCase() }}
+        </button>
+      </div>
+
+      <div class="mb-4" formGroupName="name">
+        <label class="block text-sm font-medium text-gray-700">
+          Name ({{ activeLang.toUpperCase() }})
+        </label>
+
+        <ng-container *ngIf="getLangControl('name', activeLang) as control">
+          <input
+            type="text"
+            [formControl]="control"
+            class="w-full mt-1 p-2 border rounded-md"
+          />
+        </ng-container>
+      </div>
+
+      <div class="mb-6" formGroupName="description">
+        <label class="block text-sm font-medium text-gray-700">
+          Description ({{ activeLang.toUpperCase() }})
+        </label>
+
+        <ng-container
+          *ngIf="getLangControl('description', activeLang) as control"
+        >
+          <textarea
+            [formControl]="control"
+            rows="2"
+            class="w-full mt-1 p-2 border rounded-md"
+          ></textarea>
+        </ng-container>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-[#005480] hover:bg-[#003d2e] text-white font-medium py-2 rounded-md"
+      >
+        Save Changes
+      </button>
+    </form>
+  </div>
+</ng-template>
+<ng-template #newAlbumTemplate let-close="close">
+  <div class="relative">
+    <!-- Close Button -->
+    <button
+      (click)="close()"
+      aria-label="Close"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl font-bold z-10"
+    >
+      &times;
+    </button>
+    <!-- New Album Form -->
+    <div
+      class="bg-white/60 backdrop-blur-lg shadow-xl rounded-2xl p-8 mb-12 border border-gray-200"
+    >
+      <h2
+        class="text-2xl font-semibold TitiliumWeb text-[#003d2e] mb-6 flex items-center gap-2"
+      >
+        <i class="material-icons text-[#005480]">add_photo_alternate</i>
+        Create New Album
+      </h2>
+      <form
+        [formGroup]="albumForm"
+        (ngSubmit)="onCreateAlbum()"
+        class="grid md:grid-cols-2 gap-6"
+      >
+        <!-- Album Name -->
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Album Name</label
+          >
+          <input
+            formControlName="albumName"
+            type="text"
+            placeholder="e.g. Kenya Mission Trip"
+            class="w-full border rounded-lg px-4 py-2"
+          />
+        </div>
+
+        <!-- Cover Photo -->
+        <div>
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Cover Photo</label
+          >
+          <input
+            type="file"
+            (change)="onCoverPhotoSelected($event)"
+            class="w-full"
+          />
+        </div>
+
+        <!-- Description -->
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Description</label
+          >
+          <textarea
+            formControlName="description"
+            rows="3"
+            placeholder="Brief description..."
+            class="w-full border rounded-lg px-4 py-2"
+          ></textarea>
+        </div>
+
+        <!-- Additional Images -->
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium mb-1 text-gray-700"
+            >Upload Images</label
+          >
+          <input
+            type="file"
+            multiple
+            (change)="onAlbumImagesSelected($event)"
+            class="w-full"
+          />
+        </div>
+
+        <!-- Submit -->
+        <div class="md:col-span-2">
+          <button
+            type="submit"
+            [disabled]="albumForm.invalid"
+            class="bg-gradient-to-r from-[#005480] to-[#007a6f] text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition"
+          >
+            Create Album
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

@@ -31,6 +31,8 @@ export class PopupTemplatesComponent implements AfterViewInit, OnDestroy {
   @ViewChild('addEventTemplate') addEventTemplate!: TemplateRef<any>;
   @ViewChild('prayerTemplate') prayerTemplate!: TemplateRef<any>;
   @ViewChild('serviceTemplate') serviceTemplate!: TemplateRef<any>;
+  @ViewChild('editAlbumTemplate') editAlbumTemplate!: TemplateRef<any>;
+
   private subscription?: Subscription;
   isLoading: boolean = false;
   ministryName = '';
@@ -68,6 +70,7 @@ export class PopupTemplatesComponent implements AfterViewInit, OnDestroy {
     this.registry.registerTemplate('addEventTemplate', this.addEventTemplate);
     this.registry.registerTemplate('prayerTemplate', this.prayerTemplate);
     this.registry.registerTemplate('serviceTemplate', this.serviceTemplate);
+    this.registry.registerTemplate('editAlbumTemplate', this.editAlbumTemplate);
   }
 
   onFileSelected(event: any) {

@@ -24,7 +24,7 @@ import {
   initializeFirestore,
   persistentLocalCache,
 } from '@angular/fire/firestore';
-
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { galleryReducer } from './state/gallery/gallery.reducer';
@@ -45,6 +45,7 @@ export const appConfig = (
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFunctions(() => getFunctions(undefined, 'us-central1')),
     provideStorage(() => getStorage()),
+    provideAuth(() => getAuth()),
     provideFirestore(() =>
       initializeFirestore(initializeApp(firebaseConfig), {
         ignoreUndefinedProperties: true,

@@ -7,6 +7,8 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TermServiceComponent } from './components/term-service/term-service.component';
 import { DonateComponent } from './components/donate/donate.component';
 import { GetInvolvedComponent } from './components/get-involved/get-involved.component';
+import { UsersComponent } from './admin/components/users/users.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -40,5 +42,11 @@ export const routes: Routes = [
   {
     path: 'terms',
     component: TermServiceComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    loadChildren: () =>
+      import('./admin/admin.routes').then((m) => m.adminRoutes),
   },
 ];
